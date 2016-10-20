@@ -24,7 +24,7 @@
 1. Fork the project onto your personal profile by clicking `fork` at the top of this page and selecting your own profile.
 2. After it brings you to your profile with the forked repo, go to terminal/command line.
 3. `cd` into the directory you want the folder to be placed and then type `git clone <HTTPS URL at top of repo>`.
-4. `git remote add upstream <https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git>`
+4. `git remote add upstream https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git`
 
 **Before making any contributions**
 1. `git fetch upstream`
