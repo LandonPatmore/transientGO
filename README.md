@@ -63,5 +63,5 @@
 
 * **Ashish Mahabal** - *aam@astro.caltech.edu* **(Advisor)**
 
-## License
+## Licenses
 * MIT License
