@@ -24,11 +24,18 @@
 1. Fork the project onto your personal profile by clicking `fork` at the top of this page and selecting your own profile.
 2. After it brings you to your profile with the forked repo, go to terminal/command line.
 3. `cd` into the directory you want the folder to be placed and then type `git clone <HTTPS URL at top of repo>`.
+4. `git remote add upstream <https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git>`
 
-**Before making any contributions, always `git pull` in terminal/command line to see if there is any new updates to the upstream repo**
+**Before making any contributions**
+1. `git fetch upstream`
+2. `git branch -va`
+3. `git checkout master`
+4. `git merge upstream/master`
+5. `git push`
+6. `git status`
 
 **After First Time**
-1. After making changes through contribution, open terminal/command line and `cd` into the folder directory.
+1. After contributing, open terminal/command line and `cd` into the folder directory.
 2. Type `git status` to check the status of the local repository.
 3. Type `git add .` to add all the files for staging.
 4. Type `git commit -m "<message>"` to commit the files to be uploaded to forked repo (your personal copy of the repo).
