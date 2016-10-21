@@ -76,8 +76,7 @@ def send_data():
     print("Sending Data...")
     for t in transient_array:
         insert_transient(t.get_id(), t.get_ra(), t.get_dec(), t.get_ut(), t.get_mag(), t.get_last(), t.get_light())
+    print("Done sending data.")
 
 set_data(LSST_crawler())
 send_data()
-
-print("testing branch.")
