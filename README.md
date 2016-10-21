@@ -26,12 +26,12 @@
 3. `cd` into the directory you want the folder to be placed and then type `git clone <HTTPS URL at top of repo>`.
 4. `git remote add upstream https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git`
 
-**Before making any contributions**
+**Syncing Local and Fork (DO BEFORE ANYTHING)**
 1. `git fetch upstream`
 2. `git branch -va`
 3. `git checkout master`
 4. `git merge upstream/master`
-5. `git push`
+5. `git push origin master`
 6. `git status`
 
 **After First Time**
@@ -39,7 +39,7 @@
 2. Type `git status` to check the status of the local repository.
 3. Type `git add .` to add all the files for staging.
 4. Type `git commit -m "<message>"` to commit the files to be uploaded to forked repo (your personal copy of the repo).
-5. Type `git push` to push the files to the forked repo (personal copy).
+5. Type `git push origin master` to push the files to the forked repo (personal copy).
 6. Go back onto GitLab website and go to the tab that says `Merge Requests`.
 7. Make a new merge request and select source branch and target branch.
 8. Add a title and description of the merge and then submit it.
