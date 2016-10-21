@@ -31,10 +31,8 @@
 4. `git remote add upstream https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git`
 
 **Syncing Local and Fork (DO BEFORE ANYTHING)**
-1. `git fetch upstream` fetches updates from upstream, but doesn't merge them like `git pull upstream`
-2. `git branch -va` this is to check if your branches are in sync
-3. `git checkout master` to change to the master branch if you are on another branch
-4. `git merge upstream/master` merges the changes of the upstreams to the local master
+1. `git checkout master` to change to the master branch if you are on another branch
+2. `git pull upstream` pulls and merges changes from upstream to local repo
 5. `git push origin master` pushes the changes from local repo master to forked origin
 6. `git status` checks the status of git
 
