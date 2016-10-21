@@ -64,6 +64,3 @@
 
 ## Licenses
 * MIT License
-
-
-Test of new branch.
