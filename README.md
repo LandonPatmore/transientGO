@@ -17,7 +17,6 @@
 * Java (API 20)
 * SQL
 * Python
-* JSON
 
 ## How to Contribute
 **First Time Usage**
