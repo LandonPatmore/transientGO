@@ -1,4 +1,4 @@
-# Odyssey
+# TransientGo
 
 ## Synopsis and Motivation
 * The main purpose of this application is to generate enthusiasm and awareness about the LSST project amongst the users.
