@@ -1,12 +1,9 @@
 import requests
 import json
 from bs4 import BeautifulSoup
+from mysql_connector import insert_transient
 
-transient_data = {}
 transient_array = []
-
-#change this to wherever you would like the file to save to
-path_name = "/Users/landon/Desktop/testJSON"
 
 #transient class to create transient objects to be added to an array
 class transient:
@@ -40,9 +37,6 @@ class transient:
 
     def get_light(self):
         return self.light
-
-    def show_details(self):
-        return self.i_d + " " + self.ra
 
 
 # crawls the website specified and finds the table on the website and returns
@@ -78,22 +72,10 @@ def set_data(rows):
             transient_array.append(trans)
             break
 
-#takes the transient objects inside the transient_array and creates dictionary objects
-def set_JSON():
+def send_data():
+    print("Sending Data...")
     for t in transient_array:
-        transient_data[t.get_id()] = {
-            'ra' : t.get_ra(),
-            'dec' : t.get_dec(),
-            'ut_date' : t.get_ut(),
-            'mag' : t.get_mag(),
-            'last_time' : t.get_last(),
-            'light_curve' : t.get_light()
-        }
-    j = json.dumps(transient_data)
-    #writes them to a file at specified path
-    with open("%s" % path_name, "w") as f:
-        f.write(j)
-        print("JSON file created")
+        insert_transient(t.get_id(), t.get_ra(), t.get_dec(), t.get_ut(), t.get_mag(), t.get_last(), t.get_light())
 
 set_data(LSST_crawler())
-set_JSON()
+send_data()
