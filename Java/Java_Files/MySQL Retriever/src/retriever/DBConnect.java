@@ -43,9 +43,5 @@ public class DBConnect {
 		}catch(Exception e){
 			System.out.println("Error: " + e);
 		}
-		
-		for(int i = 0; i < transients.size(); i++){
-			System.out.println(transients.get(i));
-		}
 	}
 }
