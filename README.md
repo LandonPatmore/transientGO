@@ -19,7 +19,7 @@
 * [Comet Transient Broker](http://comet.transientskp.org)
 
 ### Languages
-* Java (API 20)
+* Java (API 19)
 * SQL
 * Python
 
@@ -29,6 +29,8 @@
 
 ```sh
 - cd [directory]
+- git config --global user.email "EMAIL USED FOR GITLAB"
+- git config --global user.name "NAME ON GITLAB PROFILE"
 - git clone [HTTPS URL at top of repo]
 - git remote add upstream https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git
 ```
