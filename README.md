@@ -53,7 +53,7 @@
 2. Make a new merge request and select source branch and target branch.
 3. Add a title and description of the merge and then submit it.
 4. Your merge will be looked over and accepted or asked to be edited.
-5. **It will need to be accepted by atleast 2 people to be merged into the upstream.**
+5. **It will need to be accepted by atleast 1 person to be merged into the upstream.**
 
 # Contributors:
 
