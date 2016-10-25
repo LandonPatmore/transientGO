@@ -75,5 +75,7 @@
 
 * **Ashish Mahabal** - *aam@astro.caltech.edu* **(Advisor)**
 
+* **Andrew Drake** - *ajd@astro.caltech.edu* **(Advisor)**
+
 ## Licenses
 * MIT License
