@@ -56,6 +56,7 @@
 3. Add a title and description of the merge and then submit it.
 4. Your merge will be looked over and accepted or asked to be edited.
 5. **It will need to be accepted by atleast 1 person to be merged into the upstream.**
+6. Landon Patmore will then approve the Merge Request.
 
 # Contributors:
 
