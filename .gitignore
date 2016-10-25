@@ -12,6 +12,7 @@ __MACOSX
 .metadata
 .plugins
 .recommenders
+.pyc
 
 # OS generated files #
 ######################
