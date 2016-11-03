@@ -21,9 +21,10 @@ def send_data():
     swift_bat_grb_list = apiv1.list_ivorn(
         filters=my_filters,
         order=OrderValues.author_datetime_desc,
-        n_max=1
+        n_max=2
     )
-    swift_bat_grb_ivorn = swift_bat_grb_list[0]
+
+    swift_bat_grb_ivorn = swift_bat_grb_list[i]
     swift_bat_grb_ivorn
 
     # Retrieve a 'synopsis' (nested dictionary) for the VOEvent packet,
@@ -35,11 +36,5 @@ def send_data():
 
     insert_transient(grb_synopsis.ivorn, grb_synopsis.author_ivorn, sky_event.position.ra.deg, sky_event.position.dec.deg, grb_synopsis.author_datetime, grb_synopsis.received, grb_synopsis.role)
     print("Done sending data.")
-
-    raw_xml = apiv1.packet_xml(swift_bat_grb_ivorn)
-    print(raw_xml[:72])
-    print(' ... ')
-    with open('swift_voevent11.xml','w') as f:
-        f.write(raw_xml)
 
 send_data()
