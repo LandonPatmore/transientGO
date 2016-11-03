@@ -1,41 +1,38 @@
 {
   "project_info": {
-    "project_number": "92334061884",
-    "project_id": "transientgo"
+    "project_number": "361363035605",
+    "project_id": "firebase-transientgo"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:92334061884:android:6af372786a839377",
+        "mobilesdk_app_id": "1:361363035605:android:683f4377d7ecd8e5",
         "android_client_info": {
-          "package_name": "com.csc380team10.transients"
+          "package_name": "com.csc380team10.transientgo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "92334061884-uojsdblm7b5meog51kkr9mdqc3ob2na7.apps.googleusercontent.com",
+          "client_id": "361363035605-nhi5b8uqfohkurpcr9po1n94960kbtgc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.csc380team10.transients",
+            "package_name": "com.csc380team10.transientgo",
             "certificate_hash": "86FBC7DE85086EF91E714725E6CA6FE14B9AAB8A"
           }
         },
         {
-          "client_id": "92334061884-bdfhni6324kc6vascfg771ampv49c2op.apps.googleusercontent.com",
+          "client_id": "361363035605-df4alif6rnl5drakus2dqheor5v3ai25.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCNfIUlwk3aIWKQXlDSDu7vCSmgHur37fA"
+          "current_key": "AIzaSyBj669YB7DHUS2GjYtwXgDK8WZVGEPk1Uo"
         }
       ],
       "services": {
         "analytics_service": {
-          "status": 2,
-          "analytics_property": {
-            "tracking_id": "UA-86475928-1"
-          }
+          "status": 1
         },
         "appinvite_service": {
           "status": 1,
