@@ -1,10 +1,10 @@
 from mysql.connector import MySQLConnection, Error
 from python_mysql_dbconfig import read_db_config
 
-def insert_transient(i_d, author, ra, dec, time_discovered, recieved_on, role):
-    query = "INSERT INTO transient_table(id, author, ra, declination, time_discovered, recieved_on, role) " \
-            "VALUES(%s, %s, %s, %s, %s, %s, %s)"
-    args = (i_d, author, ra, dec, time_discovered, recieved_on, role)
+def insert_transient(i_d, author, ra, dec, time_discovered, recieved_on):
+    query = "INSERT INTO transient_table(id, author, ra, declination, time_discovered, recieved_on) " \
+            "VALUES(%s, %s, %s, %s, %s, %s)"
+    args = (i_d, author, ra, dec, time_discovered, recieved_on)
 
     try:
         db_config = read_db_config()

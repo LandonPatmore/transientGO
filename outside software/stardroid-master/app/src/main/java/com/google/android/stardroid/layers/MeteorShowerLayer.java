@@ -210,15 +210,6 @@ public class MeteorShowerLayer extends AbstractSourceLayer {
       labelSources.add(label);
     }
 
-    @Override
-    public List<String> getNames() {
-      return searchNames;
-    }
-
-    @Override
-    public GeocentricCoordinates getSearchLocation() {
-      return shower.radiant;
-    }
 
     private void updateShower() {
       lastUpdateTimeMs = model.getTime().getTime();

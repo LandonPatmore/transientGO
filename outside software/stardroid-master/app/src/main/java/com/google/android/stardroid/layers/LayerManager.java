@@ -44,6 +44,7 @@ public class LayerManager implements OnSharedPreferenceChangeListener {
 
   public void addLayer(Layer layer) {
     this.layers.add(layer);
+    System.out.println("THIS IS TA DEBUG OF: " + layer);
   }
 
   public void initialize() {

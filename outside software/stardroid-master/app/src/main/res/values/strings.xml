@@ -35,6 +35,8 @@
     <string name="show_constellations_pref">Constellations</string>
     <string name="show_messier_objects_pref" translation_description="The celestial objects catalogued by Charles Messier">Messier Objects</string>
     <string name="show_planets_pref">Solar System</string>
+    <string name="testTransient">testTransient</string>
+    <string name="show_transient_pref">Transient Object</string>
     <string name="show_grid_pref">RA/Dec Grid</string>
     <string name="show_horizon_pref">Horizon</string>
     <string name="show_sky_gradient" translation_description="This is a shading of the color of the sky used for effect">Sky Gradient</string>
@@ -121,6 +123,7 @@
     <string name="moon">Moon</string>
     <string name="mercury">Mercury</string>
     <string name="venus">Venus</string>
+    <string name="transient_image">transient_image</string>
     <string name="earth">Earth</string>
     <string name="mars">Mars</string>
     <string name="jupiter">Jupiter</string>
