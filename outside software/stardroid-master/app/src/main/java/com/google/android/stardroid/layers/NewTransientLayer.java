@@ -54,8 +54,10 @@ public class NewTransientLayer extends AbstractSourceLayer {
     private void initializeTransients() {
         System.out.println("DEBUG ADDED TRANSIENT");
         transients.add(new Transient("Test1", R.string.testTransient, GeocentricCoordinates.getInstance(230, 49)));
-
-
+        transients.add(new Transient("Test2", R.string.testTransient1, GeocentricCoordinates.getInstance(220, 49)));
+        transients.add(new Transient("Test3", R.string.testTransient2, GeocentricCoordinates.getInstance(210, 49)));
+        transients.add(new Transient("Test4", R.string.testTransient3, GeocentricCoordinates.getInstance(200, 49)));
+        transients.add(new Transient("Test5", R.string.testTransient4, GeocentricCoordinates.getInstance(190, 49)));
     }
 
     protected void initializeAstroSources(ArrayList<AstronomicalSource> sources) {
