@@ -36,10 +36,20 @@
     <string name="show_messier_objects_pref" translation_description="The celestial objects catalogued by Charles Messier">Messier Objects</string>
     <string name="show_planets_pref">Solar System</string>
     <string name="testTransient">testTransient</string>
-    <string name="testTransient1">testTransient</string>
-    <string name="testTransient2">testTransient2</string>
-    <string name="testTransient3">testTransient3</string>
-    <string name="testTransient4">testTransient4</string>
+    <string name="testTransient1">testTransient1</string>
+    <string name="testTransient2">testTransient1</string>
+    <string name="testTransient3">testTransient1</string>
+    <string name="testTransient4">testTransient1</string>
+    <string name="testTransient5">testTransient1</string>
+    <string name="testTransient6">testTransient1</string>
+    <string name="testTransient7">testTransient1</string>
+    <string name="testTransient8">testTransient1</string>
+    <string name="testTransient9">testTransient1</string>
+    <string name="testTransient10">testTransient1</string>
+    <string name="testTransient11">testTransient1</string>
+    <string name="testTransient12">testTransient1</string>
+    <string name="testTransient13">testTransient1</string>
+    <string name="testTransient14">testTransient1</string>
     <string name="show_transient_pref">Transient Object</string>
     <string name="show_grid_pref">RA/Dec Grid</string>
     <string name="show_horizon_pref">Horizon</string>

@@ -81,13 +81,6 @@
             android:name=".activities.EditSettingsActivity"
             android:theme="@android:style/Theme.Holo"/>
         <activity
-            android:name=".activities.ImageGalleryActivity"
-            android:theme="@android:style/Theme.Holo"/>
-        <activity
-            android:name=".activities.ImageDisplayActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo"/>
-        <activity
             android:name=".activities.DiagnosticActivity"
             android:label="@string/title_activity_diagnostic">
         </activity>
