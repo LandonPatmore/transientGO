@@ -1,1 +1,5 @@
-/build
+/no-checkin.properties
+build/
+gen/
+local.properties
+stardroid-release-key.keystore
