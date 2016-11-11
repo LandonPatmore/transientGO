@@ -2,9 +2,17 @@
 /build/
 */archive/
 
-__MACOSX
+# Android Studio #
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
 .DS_Store
+.idea/
+app/app.iml
+*.iml
 
+__MACOSX
 .project
 .settings
 .classpath
