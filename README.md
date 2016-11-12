@@ -38,7 +38,8 @@
 **Syncing Local and Fork (DO BEFORE ANYTHING)**
 ```sh
 - git checkout master
-- git pull upstream master
+- git fetch upstream master
+- git rebase origin/master
 - git push origin master
 - git status
 ```
