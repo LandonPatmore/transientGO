@@ -1,8 +1,0 @@
-.gradle
-/local.properties
-# User-specific configurations
-.idea/
-*.iml
-.DS_Store
-/build
-/captures
