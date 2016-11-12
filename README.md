@@ -39,7 +39,7 @@
 ```sh
 - git checkout master
 - git fetch upstream master
-- git rebase origin/master
+- git rebase upstream/master
 - git push origin master
 - git status
 ```
