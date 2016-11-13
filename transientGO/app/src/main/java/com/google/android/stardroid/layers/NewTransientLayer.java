@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
 
+
 import com.google.android.stardroid.R;
 import com.google.android.stardroid.base.TimeConstants;
 import com.google.android.stardroid.control.AstronomerModel;
@@ -18,6 +19,7 @@ import com.google.android.stardroid.source.impl.ImageSourceImpl;
 import com.google.android.stardroid.source.impl.TextSourceImpl;
 import com.google.android.stardroid.units.GeocentricCoordinates;
 import com.google.android.stardroid.units.Vector3;
+import com.google.android.stardroid.retriever.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,20 +28,15 @@ import java.util.List;
 
 public class NewTransientLayer extends AbstractSourceLayer {
     List<Transient> transients = new ArrayList<>();
+    ArrayList<SQLTransient> backEndTransients;
+    DBConnect db = new DBConnect();
 
     public static class Transient {
         private int nameId;
         private GeocentricCoordinates coordinates;
-//        private int ra;
-//        private int dec;
-//        private int mag;
-
         public Transient(String name, int nameId, GeocentricCoordinates coordinates) {
             this.nameId = nameId;
             this.coordinates = coordinates;
-//            this.ra = ra;
-//            this.dec = dec;
-//            this.mag = mag;
         }
     }
 
@@ -47,27 +44,25 @@ public class NewTransientLayer extends AbstractSourceLayer {
 
     public NewTransientLayer(AstronomerModel model, Resources resources) {
         super(resources, true);
+        backEndTransients = db.getTransients();
         this.model = model;
         initializeTransients();
     }
 
     private void initializeTransients() {
         System.out.println("DEBUG ADDED TRANSIENT");
-        transients.add(new Transient("Test1", R.string.testTransient, GeocentricCoordinates.getInstance(233, -53)));
-        transients.add(new Transient("Test2", R.string.testTransient1, GeocentricCoordinates.getInstance(170, -63)));
-        transients.add(new Transient("Test1", R.string.testTransient2, GeocentricCoordinates.getInstance(74, -73)));
-        transients.add(new Transient("Test1", R.string.testTransient3, GeocentricCoordinates.getInstance(236, 11)));
-        transients.add(new Transient("Test1", R.string.testTransient4, GeocentricCoordinates.getInstance(168, 90)));
-        transients.add(new Transient("Test1", R.string.testTransient5, GeocentricCoordinates.getInstance(69, 58)));
-        transients.add(new Transient("Test1", R.string.testTransient6, GeocentricCoordinates.getInstance(1, -36)));
-        transients.add(new Transient("Test1", R.string.testTransient7, GeocentricCoordinates.getInstance(138, 75)));
-        transients.add(new Transient("Test1", R.string.testTransient8, GeocentricCoordinates.getInstance(178, -12)));
-        transients.add(new Transient("Test1", R.string.testTransient9, GeocentricCoordinates.getInstance(48, -51)));
-        transients.add(new Transient("Test1", R.string.testTransient10, GeocentricCoordinates.getInstance(254, 63)));
-        transients.add(new Transient("Test1", R.string.testTransient11, GeocentricCoordinates.getInstance(217, 70)));
-        transients.add(new Transient("Test1", R.string.testTransient12, GeocentricCoordinates.getInstance(132, -58)));
-        transients.add(new Transient("Test1", R.string.testTransient13, GeocentricCoordinates.getInstance(222, 41)));
-        transients.add(new Transient("Test1", R.string.testTransient14, GeocentricCoordinates.getInstance(57, -26)));
+        int[] names = {R.string.testTransient0, R.string.testTransient1, R.string.testTransient2,
+                R.string.testTransient3, R.string.testTransient4, R.string.testTransient5,
+                R.string.testTransient6, R.string.testTransient7, R.string.testTransient8,
+                R.string.testTransient9, R.string.testTransient10, R.string.testTransient11,
+                R.string.testTransient12, R.string.testTransient13, R.string.testTransient14};
+        for(int i = 0; i < 15; i++){
+            float ra = backEndTransients.get(i).get_ra().floatValue();
+            System.out.println(ra);
+            float dec = backEndTransients.get(i).get_dec().floatValue();
+            System.out.println(dec);
+            transients.add(new Transient(backEndTransients.get(i).get_id(), names[i], GeocentricCoordinates.getInstance(ra, dec)));
+        }
     }
 
     protected void initializeAstroSources(ArrayList<AstronomicalSource> sources) {
