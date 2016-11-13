@@ -31,7 +31,8 @@
 - cd [directory]
 - git config --global user.email "EMAIL USED FOR GITLAB"
 - git config --global user.name "NAME ON GITLAB PROFILE"
-- git clone [HTTPS URL at top of repo]
+- git clone [HTTPS URL at top of your fork's repo]
+- cd CSC380Team10Repo
 - git remote add upstream https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git
 ```
 
