@@ -8,60 +8,44 @@ package com.google.android.stardroid.retriever;
  */
 
 public class SQLTransient {
-	private String id;
-	private Double ra;
-	private Double dec;
-	private Double ut_date;
-	private Double mag;
-	private String last_time;
-	private String light_curve;
+	private String author;
+	private String transientId;
+	private String dateAlerted;
+	private String datePublished;
+	private Double right_asencsion;
+	private Double declination;
 	
-	public SQLTransient(String i, Double r, Double d, Double ut, Double m, String last, String light){
-		id = i;
-		ra = r;
-		dec = d;
-		ut_date = ut;
-		mag = m;
-		last_time = last;
-		light_curve = light;
+	public SQLTransient(String a, String t, String dA, String dP, Double r, Double d){
+        author = a;
+        transientId = t;
+        dateAlerted = dA;
+        datePublished = dP;
+        right_asencsion = r;
+        declination = d;
 	}
 	
-	public String get_id(){
-		return id;
+	public String getAuthor(){
+		return author;
 	}
 
-	public Double get_ra(){
-		return ra;
+	public String getTransientId(){
+		return transientId;
 	}
 	
-	public Double get_dec(){
-		return dec;
+	public String getDateAlerted(){
+		return dateAlerted;
 	}
 	
-	public Double get_ut(){
-		return ut_date;
+	public String getDatePublished(){
+		return datePublished;
 	}
 	
-	public Double get_mag(){
-		return mag;
+	public Double getRightAsencsion(){
+		return right_asencsion;
 	}
 	
-	public String get_last(){
-		return last_time;
+	public Double getDeclination(){
+		return declination;
 	}
-	
-	public String get_light(){
-		return light_curve;
-	}
-
-	@Override
-	public String toString() {
-		return "Transient [id=" + id + ", ra=" + ra + ", dec=" + dec + ", ut_date=" + ut_date + ", mag=" + mag
-				+ ", last_time=" + last_time + ", light_curve=" + light_curve + "]";
-	}
-	
-	
-	
-	
 	
 }

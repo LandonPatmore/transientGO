@@ -30,6 +30,7 @@ import com.google.android.stardroid.activities.dialogs.EulaDialogFragment;
 import com.google.android.stardroid.activities.dialogs.WhatsNewDialogFragment;
 import com.google.android.stardroid.activities.util.ConstraintsChecker;
 import com.google.android.stardroid.inject.HasComponent;
+import com.google.android.stardroid.retriever.DBConnect;
 import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.MiscUtil;
 
@@ -136,7 +137,7 @@ public class SplashScreenActivity extends InjectableActivity
 
   @Override
   public void eulaRejected() {
-    Log.d(TAG, "Sorry chum, no accept, no app.");
+    Log.d(TAG, "Sorry you can not use TransientGO because you did not accept.");
     finish();
   }
 

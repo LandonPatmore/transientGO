@@ -20,8 +20,9 @@ public class DBConnect {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Success");
 			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/odyssey_test_database?autoReconnect=true&useSSL=false", "root", "nascar09");
+			con = DriverManager.getConnection("jdbc:mysql://pi.cs.oswego.edu:3306/TransientGoTeam10?autoReconnect=true&useSSL=false", "team10", "csc380");
 			st = con.createStatement();
+            System.out.println("GETTING DATA DEBUG");
 			
 			
 		}catch(Exception e){
@@ -31,19 +32,18 @@ public class DBConnect {
 
 	public void getData(){
 		try{
-			String query = "SELECT * FROM transient_information";
+			String query = "SELECT * FROM transients";
 			rs = st.executeQuery(query);
 			System.out.println("Records from database:");
 			while (rs.next()){
-				String id = rs.getString("id");
-				Double ra = rs.getDouble("ra");
-				Double dec = rs.getDouble("declination");
-				Double ut = rs.getDouble("ut_date");
-				Double mag = rs.getDouble("mag");
-				String last = rs.getString("last_time");
-				String light = rs.getString("light_curve");
+				String author = rs.getString("author");
+				String transientId = rs.getString("transientId");
+				String dateAlerted = rs.getString("dateAlerted");
+				String datePublished = rs.getString("datePublished");
+				Double right_asencsion = rs.getDouble("right_asencsion");
+				Double declination = rs.getDouble("declination");
 				
-				SQLTransient tran = new SQLTransient(id, ra, dec, ut, mag, last, light);
+				SQLTransient tran = new SQLTransient(author, transientId, dateAlerted, datePublished, right_asencsion, declination);
 				transients.add(tran);
 			}
 			
