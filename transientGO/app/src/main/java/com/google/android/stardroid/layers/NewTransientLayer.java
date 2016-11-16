@@ -28,8 +28,6 @@ import java.util.List;
 
 public class NewTransientLayer extends AbstractSourceLayer {
     List<Transient> transients = new ArrayList<>();
-    ArrayList<SQLTransient> backEndTransients;
-    //DBConnect db = new DBConnect();
 
     public static class Transient {
         private int nameId;
@@ -44,23 +42,19 @@ public class NewTransientLayer extends AbstractSourceLayer {
 
     public NewTransientLayer(AstronomerModel model, Resources resources) {
         super(resources, true);
-        //backEndTransients = db.getTransients();
         this.model = model;
         initializeTransients();
     }
 
     private void initializeTransients() {
         System.out.println("DEBUG ADDED TRANSIENT");
+        //db.getData();
         int[] names = {R.string.testTransient, R.string.testTransient1, R.string.testTransient2,
                 R.string.testTransient3, R.string.testTransient4, R.string.testTransient5,
                 R.string.testTransient6, R.string.testTransient7, R.string.testTransient8,
                 R.string.testTransient9, R.string.testTransient10, R.string.testTransient11,
                 R.string.testTransient12, R.string.testTransient13, R.string.testTransient14};
         for(int i = 0; i < 15; i++){
-            //float ra = backEndTransients.get(i).getRightAsencsion().floatValue();
-            //System.out.println(ra);
-            //float dec = backEndTransients.get(i).getDeclination().floatValue();
-            //System.out.println(dec);
             transients.add(new Transient("Test", names[i], GeocentricCoordinates.getInstance((i * 2) + 20, (i * 3) + 40)));
         }
     }

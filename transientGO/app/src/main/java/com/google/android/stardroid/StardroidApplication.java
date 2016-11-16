@@ -27,6 +27,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.stardroid.layers.LayerManager;
+import com.google.android.stardroid.retriever.DBConnect;
 import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.Analytics.Slice;
 import com.google.android.stardroid.util.MiscUtil;
@@ -63,11 +64,17 @@ public class StardroidApplication extends Application {
   // getting gc'd.
   @Inject PreferenceChangeAnalyticsTracker preferenceChangeAnalyticsTracker;
   private ApplicationComponent component;
+  //private DBConnect db = new DBConnect();
 
   @Override
   public void onCreate() {
     Log.d(TAG, "StardroidApplication: onCreate");
     super.onCreate();
+//    db.getData();
+//
+//    for(int i = 0; i < db.getTransients().size(); i++){
+//      System.out.println("DEBUG" + db.getTransients().get(i).getTransientId());
+//    }
 
     component = DaggerApplicationComponent.builder()
         .applicationModule(new ApplicationModule(this))

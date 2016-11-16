@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class Main {
   private enum Command {
-    GenStars, GenMessier, Rewrite, Binary
+    GenStars, Rewrite, Binary
   }
 
   public static void main(String[] in) throws IOException {
@@ -29,9 +29,6 @@ public class Main {
     switch (command) {
       case GenStars:
         StellarProtoWriter.main(args);
-        break;
-      case GenMessier:
-        MessierProtoWriter.main(args);
         break;
       case Rewrite:
         AsciiProtoRewriter.main(args);

@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.google.android.stardroid.ApplicationComponent;
 import com.google.android.stardroid.StardroidApplication;
+import com.google.android.stardroid.retriever.DBConnect;
 
 /**
  * Base class for all activities injected by Dagger.
