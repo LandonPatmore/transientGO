@@ -19,7 +19,6 @@ import com.google.android.stardroid.source.impl.ImageSourceImpl;
 import com.google.android.stardroid.source.impl.TextSourceImpl;
 import com.google.android.stardroid.units.GeocentricCoordinates;
 import com.google.android.stardroid.units.Vector3;
-import com.google.android.stardroid.retriever.*;
 
 import java.util.ArrayList;
 import java.util.Date;
