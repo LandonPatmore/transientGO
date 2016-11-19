@@ -15,8 +15,7 @@
 * Eclipse/Netbeans
 
 ### Data Sources
-* [Caltech MLS Telescope Data](http://nesssi.cacr.caltech.edu/MLS/CRTSII_Allns.html)
-* [Comet Transient Broker](http://comet.transientskp.org)
+* [4 Pi Sky API](http://voeventdb.4pisky.org/apiv1/)
 
 ### Languages
 * Java (API 19)
@@ -65,7 +64,7 @@
 
 * **Zackary Keller** - *zkeller@oswego.edu* **(Developer)**
 
-* **Landon Patmore** - *lpatmore@oswego.edu* **(Developer)**
+* **Landon Patmore** - *lpatmore@oswego.edu* **(Project Lead Developer)**
 
 * **Jacob Brooks** - *jbrooks2@oswego.edu* **(Developer)**
 
