@@ -336,6 +336,11 @@ public class DynamicStarMapActivity extends InjectableActivity
             Analytics.MENU_ITEM, Analytics.SEARCH_REQUESTED_LABEL, 1);
         onSearchRequested();
         break;
+      case R.id.menu_item_leaderboard:
+        Log.d(TAG,"Leaderboard");
+        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,Analytics.MENU_ITEM,Analytics.LEADERBOARD_OPENED_LABEL,1);
+        startActivity(new Intent(this, LeaderboardActivity.class));
+        break;
       case R.id.menu_item_settings:
         Log.d(TAG, "Settings");
         analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,

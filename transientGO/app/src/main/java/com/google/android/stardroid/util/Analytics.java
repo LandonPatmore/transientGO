@@ -73,6 +73,7 @@ public class Analytics {
   public static final String DIAGNOSTICS_ACTIVITY = "/MainPage/Diagnostics";
   public static final String DYNAMIC_STARMAP_ACTIVITY = "/MainPage";
   public static final String EDIT_SETTINGS_ACTIVITY = "/MainPage/EditSettings";
+  public static final String LEADERBOARD_ACTIVITY = "/MainPage/Leaderboard";
   public static final String SPLASH_SCREEN_ACTIVITY = "/SplashScreen";
   public static final String IMAGE_GALLERY_ACTIVITY = "/MainPage/ImageGallery";
   public static final String IMAGE_DISPLAY_ACTIVITY = "/MainPage/ImageGallery/ImageDisplay";
@@ -93,6 +94,7 @@ public class Analytics {
   public static final String TOGGLED_NIGHT_MODE_LABEL = "Toggled Night Mode";
   public static final String SEARCH_REQUESTED_LABEL = "Search Requested";
   public static final String SETTINGS_OPENED_LABEL = "Settings Opened";
+  public static final String LEADERBOARD_OPENED_LABEL = "Leaderboard Opened";
   public static final String HELP_OPENED_LABEL = "Help Opened";
   public static final String CALIBRATION_OPENED_LABEL = "Calibration Opened";
   public static final String TIME_TRAVEL_OPENED_LABEL = "Time Travel Opened";

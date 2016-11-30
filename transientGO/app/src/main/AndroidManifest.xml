@@ -94,6 +94,10 @@
         <activity android:name=".activities.CompassCalibrationActivity"
                   android:launchMode="singleTop">
         </activity>
+        
+        <activity
+            android:name = ".activities.LeaderboardActivity">
+        </activity>
     </application>
 
 </manifest>
