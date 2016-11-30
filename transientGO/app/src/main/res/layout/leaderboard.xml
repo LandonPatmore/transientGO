@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background = "@drawable/background"
+    android:layout_height="match_parent">
+
+
+    <ListView
+        android:id="@+id/list1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/right_button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/list2"
+        android:layout_toStartOf="@+id/list2" />
+
+    <ImageButton
+        android:src="@drawable/arrow_button_right"
+        android:layout_width="wrap_content"
+        android:layout_height= "wrap_content"
+        android:id="@+id/right_button"
+        android:background="@null"
+        android:adjustViewBounds="true"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+
+        android:layout_alignBottom="@+id/left_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Leaderboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Leaderboard"
+        android:gravity="center"
+        android:textAppearance="@android:style/TextAppearance.Holo.Large"
+        android:fontFamily="serif"
+        android:textSize="30sp"
+        android:layout_marginTop="11dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="15dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="6dp" />
+
+    <ImageButton
+    android:src="@drawable/arrow_button_left"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/left_button"
+    android:background="@null"
+
+        android:adjustViewBounds="true"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:paddingBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/Leaderboard" />
+
+    <TextView
+        android:text="Score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/username"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/score" />
+
+    <TextView
+        android:text="Rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/score"
+        android:layout_toRightOf="@+id/Leaderboard"
+        android:layout_toEndOf="@+id/Leaderboard"
+        android:id="@+id/rank" />
+
+    <TextView
+        android:text="Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:layout_below="@+id/left_button"
+        android:layout_toLeftOf="@+id/Leaderboard"
+        android:layout_toStartOf="@+id/Leaderboard" />
+
+    <ListView
+        android:id="@+id/list3"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignTop="@+id/list1"
+        android:layout_toRightOf="@+id/list2"
+        android:layout_alignParentBottom="true" />
+
+    <ListView
+    android:id="@+id/list2"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/rank"
+        android:layout_alignTop="@+id/list1"
+        android:layout_toLeftOf="@+id/right_button"
+        android:layout_alignLeft="@+id/score"
+        android:layout_alignStart="@+id/score" />
+
+</RelativeLayout>
