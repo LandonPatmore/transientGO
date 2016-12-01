@@ -31,7 +31,7 @@
 - git config --global user.email "EMAIL USED FOR GITLAB"
 - git config --global user.name "NAME ON GITLAB PROFILE"
 - git clone [HTTPS URL at top of your fork's repo]
-- git remote add upstream https://gitlab.com/CSC380Team10Repo/CSC380Team10Repo.git
+- git remote add upstream https://gitlab.com/landonp1203/tGo
 ```
 
 **Syncing Local and Fork (DO BEFORE ANYTHING)**
