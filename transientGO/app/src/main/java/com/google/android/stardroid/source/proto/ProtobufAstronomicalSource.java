@@ -14,6 +14,8 @@
 
 package com.google.android.stardroid.source.proto;
 
+import android.content.res.Resources;
+
 import com.google.android.stardroid.source.AbstractAstronomicalSource;
 import com.google.android.stardroid.source.LineSource;
 import com.google.android.stardroid.source.PointSource;
@@ -27,8 +29,6 @@ import com.google.android.stardroid.source.proto.SourceProto.LabelElementProto;
 import com.google.android.stardroid.source.proto.SourceProto.LineElementProto;
 import com.google.android.stardroid.source.proto.SourceProto.PointElementProto;
 import com.google.android.stardroid.units.GeocentricCoordinates;
-
-import android.content.res.Resources;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,6 +50,14 @@ public class ProtobufAstronomicalSource extends AbstractAstronomicalSource {
   static {
     shapeMap.put(SourceProto.Shape.CIRCLE, PointSource.Shape.CIRCLE);
     shapeMap.put(SourceProto.Shape.STAR, PointSource.Shape.CIRCLE);
+    shapeMap.put(SourceProto.Shape.ELLIPTICAL_GALAXY, PointSource.Shape.ELLIPTICAL_GALAXY);
+    shapeMap.put(SourceProto.Shape.SPIRAL_GALAXY, PointSource.Shape.SPIRAL_GALAXY);
+    shapeMap.put(SourceProto.Shape.IRREGULAR_GALAXY, PointSource.Shape.IRREGULAR_GALAXY);
+    shapeMap.put(SourceProto.Shape.LENTICULAR_GALAXY, PointSource.Shape.LENTICULAR_GALAXY);
+    shapeMap.put(SourceProto.Shape.GLOBULAR_CLUSTER, PointSource.Shape.GLOBULAR_CLUSTER);
+    shapeMap.put(SourceProto.Shape.OPEN_CLUSTER, PointSource.Shape.OPEN_CLUSTER);
+    shapeMap.put(SourceProto.Shape.NEBULA, PointSource.Shape.NEBULA);
+    shapeMap.put(SourceProto.Shape.HUBBLE_DEEP_FIELD, PointSource.Shape.HUBBLE_DEEP_FIELD);
   }
 
   private final AstronomicalSourceProto proto;
