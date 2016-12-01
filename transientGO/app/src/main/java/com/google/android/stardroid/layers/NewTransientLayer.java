@@ -15,7 +15,6 @@ import com.google.android.stardroid.source.TextSource;
 import com.google.android.stardroid.source.impl.ImageSourceImpl;
 import com.google.android.stardroid.units.GeocentricCoordinates;
 import com.google.android.stardroid.units.Vector3;
-import com.google.android.stardroid.util.DataTransferrer;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -50,11 +49,15 @@ public class NewTransientLayer extends AbstractSourceLayer {
                 R.string.testTransient9, R.string.testTransient10, R.string.testTransient11,
                 R.string.testTransient12, R.string.testTransient13, R.string.testTransient14};
 
-        for(int i = 0; i < DataTransferrer.getInstance().getTransients().size(); i++){
-            System.out.println("DEBUG ADDED TRANSIENT");
-            Float ra = DataTransferrer.getInstance().getTransients().get(i).getR();
-            Float dec = DataTransferrer.getInstance().getTransients().get(i).getD();
-            transients.add(new Transient("Transient", names[i], GeocentricCoordinates.getInstance(ra, dec)));
+//        for(int i = 0; i < DataTransferrer.getInstance().getTransients().size(); i++){
+//            System.out.println("DEBUG ADDED TRANSIENT");
+//            Float ra = DataTransferrer.getInstance().getTransients().get(i).getR();
+//            Float dec = DataTransferrer.getInstance().getTransients().get(i).getD();
+//            transients.add(new Transient("Transient", names[i], GeocentricCoordinates.getInstance(ra, dec)));
+//        }
+
+        for(int i = 0; i < 15; i++){
+            transients.add(new Transient("Transient", names[i], GeocentricCoordinates.getInstance(1 * 20, i * 30)));
         }
 
         Log.d("testTag", "THIS IS A TEST DEBUG");
