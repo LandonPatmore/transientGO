@@ -11,16 +11,7 @@ public final class SourceProto {
   public enum Shape
       implements com.google.protobuf.Internal.EnumLite {
     CIRCLE(0, 0),
-    STAR(1, 1),
-    ELLIPTICAL_GALAXY(2, 2),
-    SPIRAL_GALAXY(3, 3),
-    IRREGULAR_GALAXY(4, 4),
-    LENTICULAR_GALAXY(5, 5),
-    GLOBULAR_CLUSTER(6, 6),
-    OPEN_CLUSTER(7, 7),
-    NEBULA(8, 8),
-    HUBBLE_DEEP_FIELD(9, 9),
-    ;
+    STAR(1, 1);
     
     
     public final int getNumber() { return value; }
@@ -29,14 +20,6 @@ public final class SourceProto {
       switch (value) {
         case 0: return CIRCLE;
         case 1: return STAR;
-        case 2: return ELLIPTICAL_GALAXY;
-        case 3: return SPIRAL_GALAXY;
-        case 4: return IRREGULAR_GALAXY;
-        case 5: return LENTICULAR_GALAXY;
-        case 6: return GLOBULAR_CLUSTER;
-        case 7: return OPEN_CLUSTER;
-        case 8: return NEBULA;
-        case 9: return HUBBLE_DEEP_FIELD;
         default: return null;
       }
     }

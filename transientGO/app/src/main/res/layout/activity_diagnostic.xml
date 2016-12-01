@@ -70,7 +70,7 @@
                     style="@style/TableRow_RowHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/diagnostics_activity_sky_map_version"/>
+                    android:text="TransientGO"/>
 
                 <TextView
                     android:id="@+id/diagnose_skymap_version_txt"

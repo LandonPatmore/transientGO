@@ -22,11 +22,10 @@
           android:icon="@android:drawable/ic_menu_search"
           android:showAsAction="always"/>
 
-    <item android:id="@+id/menu_item_leaderboard"
-        android:orderInCategory="11"
-        android:title="Leaderboard"
-        android:showAsAction="never"/>
-
+    <!--<item android:id="@+id/menu_item_leaderboard"-->
+        <!--android:orderInCategory="11"-->
+        <!--android:title="Leaderboard"-->
+        <!--android:showAsAction="never"/>-->
 
     <item android:id="@+id/menu_item_dim"
           android:orderInCategory="2"

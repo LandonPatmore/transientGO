@@ -33,7 +33,6 @@ import com.google.android.stardroid.R;
 import com.google.android.stardroid.StardroidApplication;
 import com.google.android.stardroid.activities.util.ActivityLightLevelChanger;
 import com.google.android.stardroid.activities.util.ActivityLightLevelManager;
-import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.MiscUtil;
 
 import java.io.IOException;
@@ -63,7 +62,6 @@ public class EditSettingsActivity extends PreferenceActivity {
   private static final String TAG = MiscUtil.getTag(EditSettingsActivity.class);
   private Geocoder geocoder;
   private ActivityLightLevelManager activityLightLevelManager;
-  @Inject Analytics analytics;
   @Inject SharedPreferences sharedPreferences;
 
   @Override
@@ -83,7 +81,6 @@ public class EditSettingsActivity extends PreferenceActivity {
   @Override
   public void onStart() {
     super.onStart();
-    analytics.trackPageView(Analytics.EDIT_SETTINGS_ACTIVITY);
     Preference locationPreference = preferenceFragment.findPreference(LOCATION);
     // TODO(johntaylor) if the lat long prefs get changed manually, we should really
     // reset the placename to "" too.
@@ -141,7 +138,6 @@ public class EditSettingsActivity extends PreferenceActivity {
    */
   private void updatePreferences() {
     Log.d(TAG, "Updating preferences");
-    analytics.setEnabled(preferenceFragment.findPreference(Analytics.PREF_KEY).isEnabled());
   }
 
   protected boolean setLatLongFromPlace(String place) {

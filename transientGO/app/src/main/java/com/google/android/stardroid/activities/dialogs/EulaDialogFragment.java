@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.google.android.stardroid.R;
 import com.google.android.stardroid.StardroidApplication;
 import com.google.android.stardroid.inject.HasComponent;
-import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.MiscUtil;
 
 import javax.inject.Inject;
@@ -27,7 +26,6 @@ import javax.inject.Inject;
 public class EulaDialogFragment extends DialogFragment {
   private static final String TAG = MiscUtil.getTag(EulaDialogFragment.class);
   @Inject Activity parentActivity;
-  @Inject Analytics analytics;
   private EulaAcceptanceListener resultListener;
 
   public interface EulaAcceptanceListener {
@@ -85,8 +83,6 @@ public class EulaDialogFragment extends DialogFragment {
   private void acceptEula(DialogInterface dialog) {
     Log.d(TAG, "TOS Dialog closed.  User accepts.");
     dialog.dismiss();
-    analytics.trackEvent(
-        Analytics.APP_CATEGORY, Analytics.TOS_ACCEPT, Analytics.TOS_ACCEPTED, 1);
     if (resultListener != null) {
       resultListener.eulaAccepted();
     }
@@ -95,8 +91,6 @@ public class EulaDialogFragment extends DialogFragment {
   private void rejectEula(DialogInterface dialog) {
     Log.d(TAG, "TOS Dialog closed.  User declines.");
     dialog.dismiss();
-    analytics.trackEvent(
-        Analytics.APP_CATEGORY, Analytics.TOS_ACCEPT, Analytics.TOS_REJECTED, 0);
     if (resultListener != null) {
       resultListener.eulaRejected();
     }

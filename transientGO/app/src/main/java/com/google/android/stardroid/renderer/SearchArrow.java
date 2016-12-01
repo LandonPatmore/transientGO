@@ -30,7 +30,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class SearchArrow {
   // The arrow quad is 0% of the screen width or height, whichever is smaller.
-  private final float ARROW_SIZE = 0.0f;
   // The circle quad is 20% of the screen width or height, whichever is smaller.
   private final float CIRCLE_SIZE = 0.2f;
   
@@ -38,39 +37,25 @@ public class SearchArrow {
   private float mTargetTheta = 0;
   private float mTargetPhi = 0;
   private TexturedQuad mCircleQuad = null;
-  private TexturedQuad mArrowQuad = null;
-  private float mArrowOffset = 0;
   private float mCircleSizeFactor = 1;
-  private float mArrowSizeFactor = 1;
   private float mFullCircleScaleFactor = 1;
-  
-  private TextureReference mArrowTex = null;
   private TextureReference mCircleTex = null;
   
   public void reloadTextures(GL10 gl, Resources res, TextureManager textureManager) {
     gl.glEnable(GL10.GL_TEXTURE_2D);
-    
-    mArrowTex = textureManager.getTextureFromResource(gl, R.drawable.arrow);    
     mCircleTex = textureManager.getTextureFromResource(gl, R.drawable.arrowcircle);
     
     gl.glDisable(GL10.GL_TEXTURE_2D);
   }
   
   public void resize(GL10 gl, int screenWidth, int screenHeight, float fullCircleSize) {
-    mArrowSizeFactor = ARROW_SIZE * Math.min(screenWidth, screenHeight);
-    mArrowQuad = new TexturedQuad(mArrowTex,
-                                  0, 0, 0,
-                                  0.5f, 0, 0,
-                                  0, 0.5f, 0);
-    
-    mFullCircleScaleFactor = fullCircleSize;
+    mFullCircleScaleFactor = fullCircleSize; //
     mCircleSizeFactor = CIRCLE_SIZE * mFullCircleScaleFactor;
     mCircleQuad = new TexturedQuad(mCircleTex,
                                    0, 0, 0,
                                    0.5f, 0, 0,
                                    0, 0.5f, 0);
-    
-    mArrowOffset = mCircleSizeFactor + mArrowSizeFactor;
+
   }
   
   public void draw(GL10 gl, Vector3 lookDir, Vector3 upDir, SearchHelper searchHelper,
@@ -140,10 +125,6 @@ public class SearchArrow {
       gl.glPopMatrix();
     
       gl.glPushMatrix();
-      float arrowScale = mArrowSizeFactor;
-      gl.glTranslatef(mArrowOffset * 0.5f, 0, 0);
-      gl.glScalef(arrowScale, arrowScale, arrowScale);
-      mArrowQuad.draw(gl);
       gl.glPopMatrix();
     } else {
       gl.glColor4x(FixedPoint.ONE, FixedPoint.ONE, FixedPoint.ONE, 

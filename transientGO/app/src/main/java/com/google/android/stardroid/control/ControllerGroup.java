@@ -36,9 +36,9 @@ public class ControllerGroup implements Controller {
   private final static String TAG = MiscUtil.getTag(ControllerGroup.class);
   private final ArrayList<Controller> controllers = new ArrayList<Controller>();
   private ZoomController zoomController;
+  private TeleportingController teleportingController;
   private ManualOrientationController manualDirectionController;
   private SensorOrientationController sensorOrientationController;
-  private TeleportingController teleportingController;
   private boolean usingAutoMode = true;
   private AstronomerModel model;
 
@@ -53,8 +53,6 @@ public class ControllerGroup implements Controller {
     addController(manualDirectionController);
     zoomController = new ZoomController();
     addController(zoomController);
-    teleportingController = new TeleportingController();
-    addController(teleportingController);
     setAutoMode(true);
   }
 
@@ -138,15 +136,10 @@ public class ControllerGroup implements Controller {
     manualDirectionController.rotate(degrees);
   }
 
-  /**
-   * Sends the astronomer's pointing to the new target.
-   *
-   * @param target the destination
-   */
-  public void teleport(GeocentricCoordinates target) {
+  public void teleport(GeocentricCoordinates target){
     teleportingController.teleport(target);
   }
-  
+
   /**
    * Adds a new controller to this 
    */
@@ -158,4 +151,6 @@ public class ControllerGroup implements Controller {
   public void zoomBy(float ratio) {
     zoomController.zoomBy(ratio);
   }
+
+
 }

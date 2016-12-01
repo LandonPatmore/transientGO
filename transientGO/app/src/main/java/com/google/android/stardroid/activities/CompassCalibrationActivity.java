@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.google.android.stardroid.R;
 import com.google.android.stardroid.activities.util.SensorAccuracyDecoder;
-import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.MiscUtil;
 
 import javax.inject.Inject;
@@ -28,7 +27,6 @@ public class CompassCalibrationActivity extends InjectableActivity implements Se
   @Inject SensorManager sensorManager;
   @Inject SensorAccuracyDecoder accuracyDecoder;
   @Inject SharedPreferences sharedPreferences;
-  @Inject Analytics analytics;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +93,5 @@ public class CompassCalibrationActivity extends InjectableActivity implements Se
   @Override
   public void onStart() {
     super.onStart();
-    analytics.trackPageView(Analytics.COMPASS_CALIBRATION_ACTIVITY);
   }
 }

@@ -69,7 +69,6 @@ import com.google.android.stardroid.touch.GestureInterpreter;
 import com.google.android.stardroid.touch.MapMover;
 import com.google.android.stardroid.units.GeocentricCoordinates;
 import com.google.android.stardroid.units.Vector3;
-import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.MathUtil;
 import com.google.android.stardroid.util.MiscUtil;
 import com.google.android.stardroid.util.SensorAccuracyMonitor;
@@ -157,7 +156,6 @@ public class DynamicStarMapActivity extends InjectableActivity
   private View timePlayerUI;
   private DynamicStarMapComponent daggerComponent;
   @Inject Handler handler;
-  @Inject Analytics analytics;
   @Inject GooglePlayServicesChecker playServicesChecker;
   @Inject FragmentManager fragmentManager;
   @Inject EulaDialogFragment eulaDialogFragmentNoButtons;
@@ -332,25 +330,18 @@ public class DynamicStarMapActivity extends InjectableActivity
     switch (item.getItemId()) {
       case R.id.menu_item_search:
         Log.d(TAG, "Search");
-        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-            Analytics.MENU_ITEM, Analytics.SEARCH_REQUESTED_LABEL, 1);
         onSearchRequested();
         break;
-      case R.id.menu_item_leaderboard:
-        Log.d(TAG,"Leaderboard");
-        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,Analytics.MENU_ITEM,Analytics.LEADERBOARD_OPENED_LABEL,1);
-        startActivity(new Intent(this, LeaderboardActivity.class));
-        break;
+//      case R.id.menu_item_leaderboard:
+//        Log.d(TAG,"Leaderboard");
+//        startActivity(new Intent(this, LeaderboardActivity.class));
+//        break;
       case R.id.menu_item_settings:
         Log.d(TAG, "Settings");
-        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-            Analytics.MENU_ITEM, Analytics.SETTINGS_OPENED_LABEL, 1);
         startActivity(new Intent(this, EditSettingsActivity.class));
         break;
       case R.id.menu_item_help:
         Log.d(TAG, "Help");
-        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-            Analytics.MENU_ITEM, Analytics.HELP_OPENED_LABEL, 1);
         helpDialogFragment.show(fragmentManager, "Help Dialog");
         break;
       case R.id.menu_item_dim:
@@ -358,27 +349,19 @@ public class DynamicStarMapActivity extends InjectableActivity
         nightMode = !nightMode;
         sharedPreferences.edit().putString(ActivityLightLevelManager.LIGHT_MODE_KEY,
             nightMode ? "NIGHT" : "DAY").commit();
-        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-            Analytics.MENU_ITEM, Analytics.TOGGLED_NIGHT_MODE_LABEL, nightMode ? 1 : 0);
         break;
       case R.id.menu_item_tos:
         Log.d(TAG, "Loading ToS");
-        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-            Analytics.MENU_ITEM, Analytics.TOS_OPENED_LABEL, 1);
         eulaDialogFragmentNoButtons.show(fragmentManager, "Eula Dialog No Buttons");
         break;
       case R.id.menu_item_calibrate:
         Log.d(TAG, "Loading Calibration");
-        analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-            Analytics.MENU_ITEM, Analytics.CALIBRATION_OPENED_LABEL, 1);
         Intent intent = new Intent(this, CompassCalibrationActivity.class);
         intent.putExtra(CompassCalibrationActivity.HIDE_CHECKBOX, true);
         startActivity(intent);
         break;
       case R.id.menu_item_diagnostics:
         Log.d(TAG, "Loading Diagnostics");
-       analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-            Analytics.MENU_ITEM, Analytics.DIAGNOSTICS_OPENED_LABEL, 1);
         startActivity(new Intent(this, DiagnosticActivity.class));
         break;
       default:
@@ -391,7 +374,6 @@ public class DynamicStarMapActivity extends InjectableActivity
   @Override
   public void onStart() {
     super.onStart();
-    analytics.trackPageView(Analytics.DYNAMIC_STARMAP_ACTIVITY);
     sessionStartTime = System.currentTimeMillis();
   }
 
@@ -424,9 +406,6 @@ public class DynamicStarMapActivity extends InjectableActivity
     int sessionLengthSeconds = (int) ((
         System.currentTimeMillis() - sessionStartTime) / 1000);
     SessionBucketLength bucket = getSessionLengthBucket(sessionLengthSeconds);
-    analytics.trackEvent(
-        Analytics.GENERAL_CATEGORY, Analytics.SESSION_LENGTH_BUCKET,
-        bucket.toString(), sessionLengthSeconds);
   }
 
   @Override
@@ -434,12 +413,6 @@ public class DynamicStarMapActivity extends InjectableActivity
     Log.d(TAG, "onResume at " + System.currentTimeMillis());
     super.onResume();
     Log.i(TAG, "Resuming");
-
-    AstronomerModel.Pointing pointing = model.getPointing();
-    GeocentricCoordinates lineOfSight = pointing.getLineOfSight();
-
-    setText(R.id.ra_info, "RA: " + lineOfSight.getRa());
-    setText(R.id.dec_info, "DEC: " + lineOfSight.getDec());
 
     wakeLock.acquire();
     Log.i(TAG, "Starting view");
@@ -536,9 +509,6 @@ public class DynamicStarMapActivity extends InjectableActivity
     Log.d(TAG, "Query string " + queryString);
     List<SearchResult> results = layerManager.searchByObjectName(queryString);
     // Log the search, with value "1" for successful searches
-    analytics.trackEvent(
-        Analytics.USER_ACTION_CATEGORY, Analytics.SEARCH, "search:" + queryString,
-        results.size() > 0 ? 1 : 0);
     if (results.size() == 0) {
       Log.d(TAG, "No results returned");
       noSearchResultsDialogFragment.show(fragmentManager, "No Search Results");
@@ -582,8 +552,6 @@ public class DynamicStarMapActivity extends InjectableActivity
   }
 
   private void setAutoMode(boolean auto) {
-    analytics.trackEvent(Analytics.USER_ACTION_CATEGORY,
-        Analytics.MENU_ITEM, Analytics.TOGGLED_MANUAL_MODE_LABEL, auto ? 0 : 1);
     controller.setAutoMode(auto);
     if (auto) {
       sensorAccuracyMonitor.start();

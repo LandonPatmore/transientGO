@@ -1,14 +1,11 @@
 package com.google.android.stardroid.layers;
 
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
-
 
 import com.google.android.stardroid.R;
 import com.google.android.stardroid.base.TimeConstants;
 import com.google.android.stardroid.control.AstronomerModel;
-//import com.google.android.stardroid.renderer.RendererObjectManager;
 import com.google.android.stardroid.renderer.RendererObjectManager;
 import com.google.android.stardroid.source.AbstractAstronomicalSource;
 import com.google.android.stardroid.source.AstronomicalSource;
@@ -16,14 +13,15 @@ import com.google.android.stardroid.source.ImageSource;
 import com.google.android.stardroid.source.Sources;
 import com.google.android.stardroid.source.TextSource;
 import com.google.android.stardroid.source.impl.ImageSourceImpl;
-import com.google.android.stardroid.source.impl.TextSourceImpl;
 import com.google.android.stardroid.units.GeocentricCoordinates;
 import com.google.android.stardroid.units.Vector3;
+import com.google.android.stardroid.util.DataTransferrer;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
+
+//import com.google.android.stardroid.renderer.RendererObjectManager;
 
 public class NewTransientLayer extends AbstractSourceLayer {
     List<Transient> transients = new ArrayList<>();
@@ -46,21 +44,24 @@ public class NewTransientLayer extends AbstractSourceLayer {
     }
 
     private void initializeTransients() {
-        System.out.println("DEBUG ADDED TRANSIENT");
-        //db.getData();
         int[] names = {R.string.testTransient, R.string.testTransient1, R.string.testTransient2,
                 R.string.testTransient3, R.string.testTransient4, R.string.testTransient5,
                 R.string.testTransient6, R.string.testTransient7, R.string.testTransient8,
                 R.string.testTransient9, R.string.testTransient10, R.string.testTransient11,
                 R.string.testTransient12, R.string.testTransient13, R.string.testTransient14};
-        for(int i = 0; i < 15; i++){
-            transients.add(new Transient("Test", names[i], GeocentricCoordinates.getInstance((i * 2) + 20, (i * 3) + 40)));
+
+        for(int i = 0; i < DataTransferrer.getInstance().getTransients().size(); i++){
+            System.out.println("DEBUG ADDED TRANSIENT");
+            Float ra = DataTransferrer.getInstance().getTransients().get(i).getR();
+            Float dec = DataTransferrer.getInstance().getTransients().get(i).getD();
+            transients.add(new Transient("Transient", names[i], GeocentricCoordinates.getInstance(ra, dec)));
         }
+
+        Log.d("testTag", "THIS IS A TEST DEBUG");
     }
 
     protected void initializeAstroSources(ArrayList<AstronomicalSource> sources) {
         for (Transient t : transients) {
-            System.out.println("DEBUG ADDED TRANSIENT TO SOURCES");
             sources.add(new TransientSource(model, t, getResources()));
         }
     }

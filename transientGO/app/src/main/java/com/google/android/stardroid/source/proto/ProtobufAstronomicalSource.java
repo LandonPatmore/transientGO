@@ -50,14 +50,6 @@ public class ProtobufAstronomicalSource extends AbstractAstronomicalSource {
   static {
     shapeMap.put(SourceProto.Shape.CIRCLE, PointSource.Shape.CIRCLE);
     shapeMap.put(SourceProto.Shape.STAR, PointSource.Shape.CIRCLE);
-    shapeMap.put(SourceProto.Shape.ELLIPTICAL_GALAXY, PointSource.Shape.ELLIPTICAL_GALAXY);
-    shapeMap.put(SourceProto.Shape.SPIRAL_GALAXY, PointSource.Shape.SPIRAL_GALAXY);
-    shapeMap.put(SourceProto.Shape.IRREGULAR_GALAXY, PointSource.Shape.IRREGULAR_GALAXY);
-    shapeMap.put(SourceProto.Shape.LENTICULAR_GALAXY, PointSource.Shape.LENTICULAR_GALAXY);
-    shapeMap.put(SourceProto.Shape.GLOBULAR_CLUSTER, PointSource.Shape.GLOBULAR_CLUSTER);
-    shapeMap.put(SourceProto.Shape.OPEN_CLUSTER, PointSource.Shape.OPEN_CLUSTER);
-    shapeMap.put(SourceProto.Shape.NEBULA, PointSource.Shape.NEBULA);
-    shapeMap.put(SourceProto.Shape.HUBBLE_DEEP_FIELD, PointSource.Shape.HUBBLE_DEEP_FIELD);
   }
 
   private final AstronomicalSourceProto proto;

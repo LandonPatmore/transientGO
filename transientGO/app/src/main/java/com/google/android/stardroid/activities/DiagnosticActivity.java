@@ -21,7 +21,6 @@ import com.google.android.stardroid.control.AstronomerModel;
 import com.google.android.stardroid.control.LocationController;
 import com.google.android.stardroid.units.GeocentricCoordinates;
 import com.google.android.stardroid.units.LatLong;
-import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.MiscUtil;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +36,6 @@ public class DiagnosticActivity extends InjectableActivity implements SensorEven
   private static final String TAG = MiscUtil.getTag(DiagnosticActivity.class);
   private static final int UPDATE_PERIOD_MILLIS = 500;
 
-  @Inject Analytics analytics;
   @Inject StardroidApplication app;
   @Inject SensorManager sensorManager;
   @Inject ConnectivityManager connectivityManager;
@@ -65,7 +63,6 @@ public class DiagnosticActivity extends InjectableActivity implements SensorEven
   @Override
   public void onStart() {
     super.onStart();
-    analytics.trackPageView(Analytics.DIAGNOSTICS_ACTIVITY);
 
     setText(R.id.diagnose_phone_txt, Build.MODEL + " (" + Build.HARDWARE + ") " +
         Locale.getDefault().getLanguage());

@@ -29,14 +29,6 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-      <!-- Include a place for the time travel player controls. -->
-      <include
-        layout="@layout/time_player"
-        android:gravity="top"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:visibility="gone" />
-
       <!-- Include a place for the search controls bar -->
       <RelativeLayout
         android:id="@+id/search_control_bar"
@@ -74,7 +66,6 @@
           android:clickable="true"
           android:layout_width="32dip"
           android:layout_height="wrap_content"
-          android:src="@drawable/time_travel_close"
           android:layout_alignParentRight="true" />
       </RelativeLayout>
     </LinearLayout>
@@ -122,23 +113,6 @@
         </com.google.android.stardroid.views.ButtonLayerView>
       </FrameLayout>
     </RelativeLayout>
-
-    <TextView
-          android:text="RA:"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/ra_info"
-          android:layout_marginTop="650dp"
-          android:textSize="18sp" />
-
-      <TextView
-          android:text="DEC:"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/dec_info"
-          android:textSize="18sp"
-          android:layout_marginTop="650dp"
-          android:layout_marginLeft="200dp" />
 
     <View
       android:layout_width="fill_parent"

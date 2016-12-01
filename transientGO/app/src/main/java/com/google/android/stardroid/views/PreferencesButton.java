@@ -26,13 +26,11 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.stardroid.R;
-import com.google.android.stardroid.util.Analytics;
 import com.google.android.stardroid.util.MiscUtil;
 
 public class PreferencesButton extends ImageButton
     implements android.view.View.OnClickListener, OnSharedPreferenceChangeListener {
   private static final String TAG = MiscUtil.getTag(PreferencesButton.class);
-  private static Analytics analytics;
   private OnClickListener secondaryOnClickListener;
 
   @Override
@@ -62,19 +60,6 @@ public class PreferencesButton extends ImageButton
   public PreferencesButton(Context context) {
     super(context);
     init();
-  }
-
-  /**
-   * Sets the {@link Analytics} instance for reporting preference toggles.
-   *
-   * This class gets instantiated by the system and there's not obvious way to access anything
-   * dagger-ey to inject the {@link Analytics}.  Since it's not vital to the class'
-   * functioning and we'll probably kill this class anyway at some point I can live with this
-   * hack.
-   * @param analytics
-   */
-  public static void setAnalytics(Analytics analytics) {
-    PreferencesButton.analytics = analytics;
   }
 
   public void setAttrs(Context context, AttributeSet attrs) {
@@ -109,10 +94,6 @@ public class PreferencesButton extends ImageButton
   @Override
   public void onClick(View v) {
     isOn = !isOn;
-    if (analytics != null) {
-      analytics.trackEvent(
-          Analytics.USER_ACTION_CATEGORY, Analytics.PREFERENCE_BUTTON_TOGGLE, prefKey, isOn ? 1 : 0);
-    }
     setVisuallyOnOrOff();
     setPreference();
     if (secondaryOnClickListener != null) {

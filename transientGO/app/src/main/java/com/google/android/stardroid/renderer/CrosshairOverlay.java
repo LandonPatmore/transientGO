@@ -36,8 +36,8 @@ public class CrosshairOverlay {
   public void resize(GL10 gl, int screenWidth, int screenHeight) {
     mQuad = new TexturedQuad(mTex,
                              0, 0, 0,
-                             40.0f / screenWidth, 0, 0,
-                             0, 40.0f / screenHeight, 0);
+                             300.0f / screenWidth, 0, 0,
+                             0, 300.0f / screenHeight, 0);
   }
     
   public void draw(GL10 gl, SearchHelper searchHelper, boolean nightVisionMode) {
@@ -52,13 +52,13 @@ public class CrosshairOverlay {
     
     gl.glTranslatef(position.x, position.y, 0);
     
-    int period = 1000;
+    int period = 2500;
     long time = System.currentTimeMillis();
-    float intensity = 0.7f + 0.3f * MathUtil.sin((time % period) * MathUtil.TWO_PI / period);
+    float intensity = 0.1f + 0.1f * MathUtil.sin((time % period) * MathUtil.TWO_PI / period);
     if (nightVisionMode) {
-      gl.glColor4f(intensity, 0, 0, 0.7f);
+      gl.glColor4f(intensity, 0, 0, 1.0f);
     } else {
-      gl.glColor4f(intensity, intensity, 0, 0.7f);
+      gl.glColor4f(intensity, intensity, 0, 1.0f);
     }
     
     gl.glEnable(GL10.GL_BLEND);
