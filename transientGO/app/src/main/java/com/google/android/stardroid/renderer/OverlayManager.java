@@ -68,12 +68,12 @@ public class OverlayManager extends RendererObjectManager {
     // considered to have "found" it.
     float searchTargetRadius = Math.min(screenWidth, screenHeight) - 20;
     mSearchHelper.setTargetFocusRadius(searchTargetRadius);
-    mSearchHelper.resize(screenWidth, screenHeight);
+    mSearchHelper.resize(screenWidth , screenHeight);
 
     mSearchArrow.resize(gl, screenWidth, screenHeight, searchTargetRadius);
     mCrosshair.resize(gl, screenWidth, screenHeight);
 
-    mDarkQuad = new ColoredQuad(0, 0, 0, 0.6f,
+    mDarkQuad = new ColoredQuad(0, 0, 0, 0,
                                 0, 0, 0,
                                 screenWidth, 0, 0,
                                 0, screenHeight, 0);

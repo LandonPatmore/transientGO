@@ -67,7 +67,7 @@ public class SearchHelper {
     long time = System.currentTimeMillis();
     float delta = 0.001f * (time - mLastUpdateTime);
     mTransitionFactor += delta * (inFocus ? 1 : -1);
-    mTransitionFactor = Math.min(1, Math.max(0, mTransitionFactor));
+    mTransitionFactor = Math.min((float)0.3, Math.max(0, mTransitionFactor));
     mLastUpdateTime = time;
   }
   
@@ -90,7 +90,7 @@ public class SearchHelper {
   
   private boolean targetInFocusRadiusImpl() {
     float distFromCenter = getDistanceFromCenterOfScreen();
-    return 0.5f * mTargetFocusRadius > distFromCenter;
+    return 0.1f * mTargetFocusRadius > distFromCenter;
   }
   
   private Vector3 mTarget = new Vector3(0, 0, 0);

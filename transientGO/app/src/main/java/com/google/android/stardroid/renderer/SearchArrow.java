@@ -29,7 +29,6 @@ import com.google.android.stardroid.util.VectorUtil;
 import javax.microedition.khronos.opengles.GL10;
 
 public class SearchArrow {
-  // The arrow quad is 0% of the screen width or height, whichever is smaller.
   // The circle quad is 20% of the screen width or height, whichever is smaller.
   private final float CIRCLE_SIZE = 0.2f;
   
@@ -127,7 +126,7 @@ public class SearchArrow {
       gl.glPushMatrix();
       gl.glPopMatrix();
     } else {
-      gl.glColor4x(FixedPoint.ONE, FixedPoint.ONE, FixedPoint.ONE, 
+      gl.glColor4x(FixedPoint.ONE, FixedPoint.ONE, FixedPoint.ONE,
                    FixedPoint.floatToFixedPoint(0.7f));
       
       gl.glTexEnvfv(GL10.GL_TEXTURE_ENV, GL10.GL_TEXTURE_ENV_COLOR, 
