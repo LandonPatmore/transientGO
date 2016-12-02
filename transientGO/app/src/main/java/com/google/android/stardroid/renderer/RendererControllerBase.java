@@ -239,7 +239,7 @@ public abstract class RendererControllerBase {
                                        final String targetName) {
     final String msg = "Enabling search overlay";
     queueRunnable(msg, CommandType.Data, new Runnable() { public void run() {
-      mRenderer.enableSearchOverlay(target, targetName);
+      mRenderer.enableSearchOverlay(TransientData.getInstance().getCo(), "Test");
     }});
   }
 

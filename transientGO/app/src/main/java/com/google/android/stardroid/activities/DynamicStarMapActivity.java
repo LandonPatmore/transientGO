@@ -225,12 +225,20 @@ public class DynamicStarMapActivity extends InjectableActivity
     // Were we started as the result of a search?
     Intent intent = getIntent();
     Log.d(TAG, "Intent received: " + intent);
-    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-      Log.d(TAG, "Started as a result of a search");
-      doSearchWithIntent(intent);
-    }
-    Log.d(TAG, "-onCreate at " + System.currentTimeMillis());
+//    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+//      Log.d(TAG, "Started as a result of a search");
+//      doSearchWithIntent(intent);
+//    }
+//    Log.d(TAG, "-onCreate at " + System.currentTimeMillis());
+
+    onSearchRequested();
+//    final String queryString = intent.getStringExtra(SearchManager.QUERY);
+//    List<SearchResult> results = layerManager.searchByObjectName(queryString);
+//    final SearchResult result = results.get(0);
+//    activateSearchTarget(result.coords, result.capitalizedName);
+
   }
+
 
   private void setText(int viewId, String text) {
     ((TextView) findViewById(viewId)).setText(text);
@@ -313,7 +321,7 @@ public class DynamicStarMapActivity extends InjectableActivity
         // thing is to back out of search.
         Log.d(TAG, "In search mode " + searchMode);
         if (searchMode) {
-          cancelSearch();
+          //cancelSearch();
           break;
         }
       default:
@@ -330,7 +338,7 @@ public class DynamicStarMapActivity extends InjectableActivity
     switch (item.getItemId()) {
       case R.id.menu_item_search:
         Log.d(TAG, "Search");
-        onSearchRequested();
+        //onSearchRequested();
         break;
 //      case R.id.menu_item_leaderboard:
 //        Log.d(TAG,"Leaderboard");
@@ -501,12 +509,10 @@ public class DynamicStarMapActivity extends InjectableActivity
   private void doSearchWithIntent(Intent searchIntent) {
     // If we're already in search mode, cancel it.
     if (searchMode) {
-      cancelSearch();
+//      /cancelSearch();
     }
     Log.d(TAG, "Performing Search");
     final String queryString = searchIntent.getStringExtra(SearchManager.QUERY);
-    searchMode = true;
-    Log.d(TAG, "Query string " + queryString);
     List<SearchResult> results = layerManager.searchByObjectName(queryString);
     // Log the search, with value "1" for successful searches
     if (results.size() == 0) {
@@ -517,8 +523,8 @@ public class DynamicStarMapActivity extends InjectableActivity
       showUserChooseResultDialog(results);
     } else {
       Log.d(TAG, "One result returned.");
-      final SearchResult result = results.get(0);
-      activateSearchTarget(result.coords, result.capitalizedName);
+      //final SearchResult result = results.get(0);
+      //activateSearchTarget(result.coords, result.capitalizedName);
     }
   }
 
@@ -566,7 +572,7 @@ public class DynamicStarMapActivity extends InjectableActivity
     cancelSearchButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        cancelSearch();
+        //cancelSearch();
       }
     });
 
@@ -595,12 +601,12 @@ public class DynamicStarMapActivity extends InjectableActivity
     dragZoomRotateDetector = new DragRotateZoomGestureDetector(mapMover);
   }
 
-  private void cancelSearch() {
-    View searchControlBar = findViewById(R.id.search_control_bar);
-    searchControlBar.setVisibility(View.INVISIBLE);
-    rendererController.queueDisableSearchOverlay();
-    searchMode = false;
-  }
+//  private void cancelSearch() {
+//    View searchControlBar = findViewById(R.id.search_control_bar);
+//    searchControlBar.setVisibility(View.INVISIBLE);
+//    rendererController.queueDisableSearchOverlay();
+//    searchMode = false;
+//  }
 
   @Override
   protected void onNewIntent(Intent intent) {
@@ -658,8 +664,8 @@ public class DynamicStarMapActivity extends InjectableActivity
     TextView searchPromptText = (TextView) findViewById(R.id.search_status_label);
     searchPromptText.setText(
         String.format("%s %s", getString(R.string.search_target_looking_message), searchTerm));
-    View searchControlBar = findViewById(R.id.search_control_bar);
-    searchControlBar.setVisibility(View.VISIBLE);
+    //View searchControlBar = findViewById(R.id.search_control_bar);
+    //searchControlBar.setVisibility(View.INVISIBLE);
   }
 
   public AstronomerModel getModel() {

@@ -266,6 +266,8 @@ public class SkyRenderer implements GLSurfaceView.Renderer {
     mSkyBox.enable(false);
   }
 
+  TransientData t = TransientData.getInstance();
+
   public void enableSearchOverlay(GeocentricCoordinates target, String targetName) {
     mOverlayManager.enableSearchOverlay(target, targetName);
   }

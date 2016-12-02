@@ -125,7 +125,7 @@ public class OverlayManager extends RendererObjectManager {
   }
 
   public void enableSearchOverlay(GeocentricCoordinates target, String targetName) {
-    Log.d("OverlayManager", "Searching for " + target);
+    Log.d("OverlayManager", "Searching for " + "Test");
     mSearching = true;
     mSearchHelper.setTransform(getRenderState().getTransformToDeviceMatrix());
     mSearchHelper.setTarget(target, targetName);
