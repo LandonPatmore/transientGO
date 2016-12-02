@@ -49,7 +49,7 @@ public class MultipleSearchResultsDialogFragment extends DialogFragment {
           dialog.dismiss();
         } else {
           final SearchResult item = multipleSearchResultsAdaptor.getItem(whichButton);
-          parentActivity.activateSearchTarget(item.coords, item.capitalizedName);
+          parentActivity.activateSearchTarget(item.coords);
           dialog.dismiss();
         }
       }

@@ -30,6 +30,7 @@ import com.google.android.stardroid.activities.dialogs.EulaDialogFragment;
 import com.google.android.stardroid.activities.dialogs.WhatsNewDialogFragment;
 import com.google.android.stardroid.activities.util.ConstraintsChecker;
 import com.google.android.stardroid.inject.HasComponent;
+import com.google.android.stardroid.util.JSONParser;
 import com.google.android.stardroid.util.MiscUtil;
 
 import javax.inject.Inject;
@@ -78,6 +79,10 @@ public class SplashScreenActivity extends InjectableActivity
         Log.d(TAG, "SplashScreen.Animcation onAnimationStart");
       }
     });
+
+//    JSONParser j = new JSONParser();
+//    j.execute();
+
   }
 
   @Override

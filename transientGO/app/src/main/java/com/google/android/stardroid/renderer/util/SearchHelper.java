@@ -24,8 +24,7 @@ public class SearchHelper {
     mHalfScreenHeight = height * 0.5f;
   }
   
-  public void setTarget(Vector3 target, String targetName) {
-    mTargetName = targetName;
+  public void setTarget(Vector3 target) {
     mTarget = target.copy();
     mTransformedPosition = null;
     mLastUpdateTime = System.currentTimeMillis();

@@ -29,12 +29,12 @@ public class JSONParser {
     }
 
     public void execute(){
-        new GetContacts().execute();
+        new GetTransients().execute();
     }
     /**
      * Async task class to get json by making HTTP call
      */
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
+    private class GetTransients extends AsyncTask<Void, Void, Void> {
 
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();

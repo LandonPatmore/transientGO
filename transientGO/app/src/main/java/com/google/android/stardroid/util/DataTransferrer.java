@@ -10,20 +10,22 @@ import java.util.ArrayList;
 public class DataTransferrer {
     private static DataTransferrer instance = null;
 
-    private ArrayList<Transients> transientList;
-
     private DataTransferrer(){
-        transientList = new ArrayList<>();
     }
 
-    public static synchronized DataTransferrer getInstance(){
-        if(instance == null) {instance = new DataTransferrer();}
+    public static DataTransferrer getInstance(){
         return instance;
     }
 
-    public ArrayList<Transients> getTransients(){return this.transientList;}
+    private ArrayList<Transients> transientList = new ArrayList<>();
 
-    public void setTransients(ArrayList<Transients> t){transientList = t;}
+    public ArrayList<Transients> getTransients(){
+        return this.transientList;
+    }
+
+    public void setTransients(ArrayList<Transients> t){
+        transientList = t;
+    }
 
     public void printAll(){
         for(Transients t : transientList){

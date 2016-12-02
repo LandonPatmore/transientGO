@@ -124,11 +124,10 @@ public class OverlayManager extends RendererObjectManager {
     mMustUpdateTransformedOrientation = true;
   }
 
-  public void enableSearchOverlay(GeocentricCoordinates target, String targetName) {
-    Log.d("OverlayManager", "Searching for " + "Test");
+  public void enableSearchOverlay(GeocentricCoordinates target) {
     mSearching = true;
     mSearchHelper.setTransform(getRenderState().getTransformToDeviceMatrix());
-    mSearchHelper.setTarget(target, targetName);
+    mSearchHelper.setTarget(target);
     Vector3 transformedPosition = Matrix4x4.multiplyMV(mGeoToViewerTransform, target);
     mSearchArrow.setTarget(transformedPosition);
     queueForReload(false);
