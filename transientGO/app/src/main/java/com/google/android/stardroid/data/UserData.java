@@ -7,10 +7,15 @@ package com.google.android.stardroid.data;
 public enum UserData {
     INSTANCE;
 
-    private int userExp = 0;
-    private int userLevel = 0;
-    private int userScore = 0;
+    private int userExp;
+    private int userLevel;
+    private int userScore;
+    private int totalUserScore;
+    private String userName;
 
+    public int getTotalUserExp(){
+        return totalUserScore;
+    }
 
     public int getUserExp() {
         return userExp;
@@ -34,5 +39,14 @@ public enum UserData {
 
     public void setUserScore(int userScore) {
         this.userScore = userScore;
+        totalUserScore = totalUserScore + userScore;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

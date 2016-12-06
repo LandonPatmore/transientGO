@@ -27,6 +27,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,6 +76,8 @@ import com.google.android.stardroid.util.MathUtil;
 import com.google.android.stardroid.util.MiscUtil;
 import com.google.android.stardroid.util.SensorAccuracyMonitor;
 import com.google.android.stardroid.views.ButtonLayerView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,6 +170,7 @@ public class DynamicStarMapActivity extends InjectableActivity
   private List<Runnable> onResumeRunnables = new ArrayList<>();
   private Button cTran;
   private boolean finish;
+  private Toast toast;
 
   // We need to maintain references to these objects to keep them from
   // getting gc'd.
@@ -237,9 +241,15 @@ public class DynamicStarMapActivity extends InjectableActivity
         if (SearchHelper.INSTANCE.targetInFocusRadius()) {
           startActivity(new Intent(DynamicStarMapActivity.this, CaughtTransientActivity.class));
           finish = true;
-          Toast.makeText(DynamicStarMapActivity.this, "Transient Caught!", Toast.LENGTH_SHORT).show();
+          toast = Toast.makeText(getApplicationContext(),
+                  "Transient Caught!", Toast.LENGTH_SHORT);
+          toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 900);
+          toast.show();
         } else {
-          Toast.makeText(DynamicStarMapActivity.this, "No transients found!", Toast.LENGTH_SHORT).show();
+          toast = Toast.makeText(getApplicationContext(),
+                  "No Transients in the Area!", Toast.LENGTH_SHORT);
+          toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 900);
+          toast.show();
         }
       }
     });
@@ -251,6 +261,16 @@ public class DynamicStarMapActivity extends InjectableActivity
     ProgressBar p = (ProgressBar) findViewById(R.id.userExpBar);
     p.setProgress(UserData.INSTANCE.getUserExp());
 
+    TextView exp = (TextView) findViewById(R.id.EXP);
+    exp.setText("Exp: " + UserData.INSTANCE.getUserExp() + "/100");
+
+    TextView lev = (TextView) findViewById(R.id.userLevel);
+    String uL = Integer.toString(UserData.INSTANCE.getUserLevel());
+    lev.setText(uL);
+
+    TextView sco = (TextView) findViewById(R.id.userScore);
+    String uS = Integer.toString(UserData.INSTANCE.getUserScore());
+    sco.setText(uS);
 
   }
 

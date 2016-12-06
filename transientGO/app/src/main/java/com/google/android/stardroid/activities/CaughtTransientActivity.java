@@ -9,6 +9,7 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import com.google.android.stardroid.R;
+import com.google.android.stardroid.data.Transient;
 import com.google.android.stardroid.data.TransientData;
 import com.google.android.stardroid.data.UserData;
 
@@ -56,12 +57,23 @@ public class CaughtTransientActivity extends Activity {
             public void onClick(View view) {
                 TransientData.INSTANCE.removeTransient();
                 startActivity(new Intent(CaughtTransientActivity.this, DynamicStarMapActivity.class));
-                Toast.makeText(CaughtTransientActivity.this, "Refreshed Data", Toast.LENGTH_SHORT).show();
             }
         });
 
-        int addedScore = UserData.INSTANCE.getUserExp() + TransientData.INSTANCE.getData().get(0).getScore();
-        UserData.INSTANCE.setUserExp(addedScore);
+        UserData.INSTANCE.setUserExp(UserData.INSTANCE.getUserExp() + TransientData.INSTANCE.getData().get(0).getScore());
+        System.out.println("TOTAL EXP: " + UserData.INSTANCE.getTotalUserExp());
+        if(UserData.INSTANCE.getUserExp() >= 100){
+            int exp = UserData.INSTANCE.getUserExp();
+            int buffer = exp - 100;
+            exp = exp - buffer;
+
+            int newexp = UserData.INSTANCE.getUserExp() - exp;
+            UserData.INSTANCE.setUserExp(newexp);
+
+            UserData.INSTANCE.setUserLevel(UserData.INSTANCE.getUserLevel() + 1);
+            System.out.println("TOTAL EXP (INSIDE): " + UserData.INSTANCE.getTotalUserExp());
+        }
+        UserData.INSTANCE.setUserScore(UserData.INSTANCE.getUserScore() + TransientData.INSTANCE.getData().get(0).getScore());
 
 
     }

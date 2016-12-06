@@ -44,7 +44,8 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center_vertical">
-        <RelativeLayout
+
+          <RelativeLayout
             android:id="@+id/manual_bar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -102,6 +103,73 @@
           android:layout_alignStart="@+id/cTransient"
           android:layout_alignRight="@+id/cTransient"
           android:layout_alignEnd="@+id/cTransient" />
+
+        <TextView
+            android:text="Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/level"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_above="@+id/cTransient"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/cTransient"
+            android:layout_toStartOf="@+id/cTransient"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="Score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/score"
+            android:gravity="center"
+            android:layout_alignBaseline="@+id/level"
+            android:layout_alignBottom="@+id/level"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/cTransient"
+            android:layout_toEndOf="@+id/cTransient" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userLevel"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/cTransient"
+            android:layout_toLeftOf="@+id/cTransient"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="48sp" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userScore"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/cTransient"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/cTransient"
+            android:layout_alignTop="@+id/userLevel"
+            android:textSize="48sp" />
+
+        <TextView
+            android:text="0/100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/userExpBar"
+            android:layout_alignLeft="@+id/userExpBar"
+            android:layout_alignStart="@+id/userExpBar"
+            android:layout_marginBottom="13dp"
+            android:id="@+id/EXP"
+            android:gravity="center"
+            android:layout_toStartOf="@+id/textView11"
+            android:layout_alignRight="@+id/userExpBar"
+            android:layout_alignEnd="@+id/userExpBar" />
 
     </RelativeLayout>
 

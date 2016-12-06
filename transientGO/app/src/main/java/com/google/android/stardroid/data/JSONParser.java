@@ -1,10 +1,7 @@
-package com.google.android.stardroid.util;
+package com.google.android.stardroid.data;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.google.android.stardroid.data.Transient;
-import com.google.android.stardroid.data.TransientData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +40,7 @@ public class JSONParser {
             HttpHandler sh = new HttpHandler();
 
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+            String jsonStr = sh.sendGetRequest(url);
 
             Log.d(TAG, "Response from url: " + jsonStr);
 
@@ -67,7 +64,7 @@ public class JSONParser {
                         float right_asencsion = (float) c.getDouble("right_asencsion");
                         float declination = (float) c.getDouble("declination");
 
-                        t = new Transient(author, transientId, dateAlerted, datePublished, "TRANSIENT", right_asencsion, declination, 20.1f, 10);
+                        t = new Transient(author, transientId, dateAlerted, datePublished, "TRANSIENT", right_asencsion, declination, 20.1f, 60);
 
                         // adding trans to trans list
                         transientList.add(t);
