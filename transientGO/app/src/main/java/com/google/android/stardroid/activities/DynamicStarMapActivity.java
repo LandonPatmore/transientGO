@@ -57,6 +57,7 @@ import com.google.android.stardroid.control.AstronomerModel;
 import com.google.android.stardroid.control.AstronomerModel.Pointing;
 import com.google.android.stardroid.control.ControllerGroup;
 import com.google.android.stardroid.control.MagneticDeclinationCalculatorSwitcher;
+import com.google.android.stardroid.data.Transient;
 import com.google.android.stardroid.data.UserData;
 import com.google.android.stardroid.inject.HasComponent;
 import com.google.android.stardroid.layers.LayerManager;
@@ -242,7 +243,10 @@ public class DynamicStarMapActivity extends InjectableActivity
         }
       }
     });
-    activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
+
+    if(TransientData.INSTANCE.getData().size() == 0) {
+      activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
+    }
 
     ProgressBar p = (ProgressBar) findViewById(R.id.userExpBar);
     p.setProgress(UserData.INSTANCE.getUserExp());

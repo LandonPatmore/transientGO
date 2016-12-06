@@ -27,7 +27,7 @@ import com.google.android.stardroid.util.MiscUtil;
 public class ZoomController extends AbstractController {
   private static final String TAG = MiscUtil.getTag(ZoomController.class);
   @VisibleForTesting
-  public static final float MAX_ZOOM_OUT = 60.0f;
+  public static final float MAX_ZOOM_OUT = 90.0f;
 
   private void setFieldOfView(float zoomDegrees) {
     if (!enabled) {

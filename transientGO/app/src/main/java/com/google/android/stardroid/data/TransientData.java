@@ -12,6 +12,7 @@ public enum TransientData {
 
     public void setTransients(ArrayList<Transient> t){
         this.aTransients.addAll(t);
+        this.aTransients.add(new Transient("No more transients!", "No more transients!", "No more transients!", "No more transients!", "No more transients!", 0f, 0f, 0f, 0));
     }
 
     public ArrayList<Transient> getData(){
@@ -22,6 +23,7 @@ public enum TransientData {
         if(this.aTransients.size() > 1) {
             this.aTransients.remove(0);
         }
+
         return this.aTransients;
     }
 }
