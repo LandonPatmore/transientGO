@@ -125,7 +125,7 @@ public class SkyRenderer implements GLSurfaceView.Renderer {
     for (int layer : mLayersToManagersMap.keySet()) {
       Set<RendererObjectManager> managers = mLayersToManagersMap.get(layer);
       for (RendererObjectManager rom : managers) {
-        rom.draw(gl);
+          rom.draw(gl);
       }
     }
     checkForErrors(gl);
@@ -266,14 +266,9 @@ public class SkyRenderer implements GLSurfaceView.Renderer {
     mSkyBox.enable(false);
   }
 
-  TransientData t = TransientData.getInstance();
 
   public void enableSearchOverlay(GeocentricCoordinates target) {
     mOverlayManager.enableSearchOverlay(target);
-  }
-
-  public void disableSearchOverlay() {
-    mOverlayManager.disableSearchOverlay();
   }
 
   public void setNightVisionMode(boolean enabled) {

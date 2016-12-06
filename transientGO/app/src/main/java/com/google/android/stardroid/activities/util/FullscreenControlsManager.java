@@ -21,18 +21,6 @@ import java.util.List;
 public class FullscreenControlsManager {
   private static final String TAG = MiscUtil.getTag(FullscreenControlsManager.class);
   /**
-   * Whether or not the system UI should be auto-hidden after
-   * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-   */
-  private static final boolean AUTO_HIDE = true;
-
-  /**
-   * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-   * user interaction before hiding the system UI.
-   */
-  private static final int AUTO_HIDE_DELAY_MILLIS = 1000;
-
-  /**
    * Some older devices needs a small delay between UI widget updates
    * and a change of the status and navigation bar.
    */
@@ -61,22 +49,7 @@ public class FullscreenControlsManager {
 
   public void toggleControls() {
     Log.d(TAG, "Toggling the UI");
-    toggle();
-  }
-
-  /**
-   * Quickly exposes the controls so that the user knows they're there.
-   */
-  public void flashTheControls() {
-
-    // Trigger the initial hide() shortly after the activity has been
-    // created, to briefly hint to the user that UI controls
-    // are available.
-    delayedHide(1000);
-  }
-
-  public void delayHideTheControls() {
-    delayedHide(AUTO_HIDE_DELAY_MILLIS);
+    show();
   }
 
   /**
@@ -87,27 +60,11 @@ public class FullscreenControlsManager {
   private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-      if (AUTO_HIDE) {
-        delayedHide(AUTO_HIDE_DELAY_MILLIS);
-      }
       return false;
     }
   };
 
-  private void toggle() {
-    if (mVisible) {
-      hide();
-    } else {
-      show();
-    }
-  }
-
   private void hide() {
-    // Hide UI first
-    ActionBar actionBar = mActivity.getActionBar();
-    if (actionBar != null) {
-      actionBar.hide();
-    }
     for (View view : mViewsToHide) {
       view.setVisibility(View.GONE);
     }

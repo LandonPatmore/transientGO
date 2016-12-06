@@ -9,118 +9,101 @@
   android:orientation="vertical"
   android:id="@+id/main_sky_view_root">
 
-  <FrameLayout
-    android:id="@+id/main_sky_view"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_weight="1"
-      android:layout_alignParentTop="true"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true">
-    <android.opengl.GLSurfaceView
+    <RelativeLayout
+      android:id="@+id/main_sky_view"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
-      android:id="@+id/skyrenderer_view" />
-    <!-- Provides a translucent mask over the whole screen -->
+      android:layout_weight="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+      <android.opengl.GLSurfaceView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/skyrenderer_view" />
+      <!-- Provides a translucent mask over the whole screen -->
 
-      <!-- Include a place for all the modal controls. -->
-    <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
-
-      <!-- Include a place for the search controls bar -->
+        <!-- Include a place for all the modal controls. -->
       <RelativeLayout
-        android:id="@+id/search_control_bar"
-        android:orientation="vertical"
-        android:padding="1dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#20990099"
-        android:visibility="gone">
-        <ImageView
-          android:id="@+id/search_icon"
-          android:layout_width="34dip"
-          android:layout_height="wrap_content"
-          android:src="@drawable/search_lens_very_small"
-          android:paddingTop="10dip" />
-        <TextView
-          android:id="@+id/search_status_label"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_toRightOf="@id/search_icon"
-          android:paddingLeft="10dip"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:layout_marginLeft="2dip" />
-        <TextView
-          android:id="@+id/search_prompt"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/search_overlay_title"
-          android:layout_below="@id/search_status_label"
-          android:layout_marginLeft="34dip"
-          android:textAppearance="?android:attr/textAppearanceSmall" />
-        <ImageButton
-          android:id="@+id/cancel_search_button"
-          android:background="@android:color/transparent"
-          android:clickable="true"
-          android:layout_width="32dip"
-          android:layout_height="wrap_content"
-          android:layout_alignParentRight="true" />
-      </RelativeLayout>
-    </LinearLayout>
-    <!--  The layers/providers button -->
-    <com.google.android.stardroid.views.ButtonLayerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/layer_buttons_control"
-        android:layout_gravity="left|center_vertical"
-        android:orientation="vertical"
-        stardroid:fade_time="500">
-    </com.google.android.stardroid.views.ButtonLayerView>
+        android:orientation="vertical">
 
-    <!-- This is where we enter the layout logic of the bottom area.
-     Both the zoom controls + manual/auto toggle, and time player controls, are here, and
-     either of these may be invisible or visible. If both visible, time player controls
-     appear below. This is a temporary hack because they didn't appear at all when
-     I tried to place them above (widdows).
--->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
-      <FrameLayout
-          android:id="@+id/manual_bar"
-          android:layout_width="fill_parent"
+      </RelativeLayout>
+      <!--  The layers/providers button -->
+      <com.google.android.stardroid.views.ButtonLayerView
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_gravity="bottom">
-        <com.google.android.stardroid.views.ButtonLayerView
-            android:layout_width="wrap_content"
+          android:id="@+id/layer_buttons_control"
+          android:layout_gravity="left|center_vertical"
+          android:orientation="vertical"
+          stardroid:fade_time="500">
+      </com.google.android.stardroid.views.ButtonLayerView>
+  -->
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical">
+        <RelativeLayout
+            android:id="@+id/manual_bar"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layer_manual_auto_toggle"
-            android:layout_gravity="bottom|right"
-            android:orientation="vertical"
-            stardroid:fade_time="500">
-          <com.google.android.stardroid.views.PreferencesButton
+            android:layout_gravity="bottom">
+          <com.google.android.stardroid.views.ButtonLayerView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:background="#00000000"
-              android:id="@+id/manual_auto_toggle"
-              stardroid:pref_key="auto_mode"
-              stardroid:image_on="@drawable/manualmode"
-              stardroid:image_off="@drawable/automaticmode"
-              stardroid:default_value="true"/>
-        </com.google.android.stardroid.views.ButtonLayerView>
-      </FrameLayout>
+              android:id="@+id/layer_manual_auto_toggle"
+              android:layout_gravity="bottom|right"
+              android:orientation="vertical"
+              stardroid:fade_time="500"></com.google.android.stardroid.views.ButtonLayerView>
+        </RelativeLayout>
+      </RelativeLayout>
+
+      <com.google.android.stardroid.views.PreferencesButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="#00000000"
+          android:id="@+id/manual_auto_toggle"
+          stardroid:pref_key="auto_mode"
+          stardroid:image_on="@drawable/manualmode"
+          stardroid:image_off="@drawable/automaticmode"
+          stardroid:default_value="true"
+          android:layout_centerVertical="true"
+          android:layout_alignParentRight="true"
+          android:layout_alignParentEnd="true" />
+
+      <View
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ff990099"
+        android:visibility="invisible"
+        android:id="@+id/view_mask"
+          android:layout_alignParentTop="true"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentStart="true" />
+
+      <Button
+          android:text="Capture Transient!"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/cTransient"
+          android:layout_marginBottom="47dp"
+          android:layout_alignParentBottom="true"
+          android:layout_centerHorizontal="true" />
+
+      <ProgressBar
+          style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/userExpBar"
+          android:layout_marginTop="73dp"
+          android:layout_below="@+id/relativeLayout"
+          android:layout_alignLeft="@+id/cTransient"
+          android:layout_alignStart="@+id/cTransient"
+          android:layout_alignRight="@+id/cTransient"
+          android:layout_alignEnd="@+id/cTransient" />
+
     </RelativeLayout>
 
-    <View
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:background="#ff990099"
-      android:visibility="invisible"
-      android:id="@+id/view_mask"/>
-
-  </FrameLayout>
 </RelativeLayout>
 

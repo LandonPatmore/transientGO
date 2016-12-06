@@ -18,7 +18,10 @@ import com.google.android.stardroid.units.Vector3;
 import com.google.android.stardroid.util.MathUtil;
 import com.google.android.stardroid.util.Matrix4x4;
 
-public class SearchHelper {
+
+public enum SearchHelper{
+  INSTANCE;
+
   public void resize(int width, int height) {
     mHalfScreenWidth = width * 0.5f;
     mHalfScreenHeight = height * 0.5f;
@@ -67,7 +70,7 @@ public class SearchHelper {
     long time = System.currentTimeMillis();
     float delta = 0.001f * (time - mLastUpdateTime);
     mTransitionFactor += delta * (inFocus ? 1 : -1);
-    mTransitionFactor = Math.min((float)0.3, Math.max(0, mTransitionFactor));
+    mTransitionFactor = Math.min((float)0.1, Math.max(0, mTransitionFactor));
     mLastUpdateTime = time;
   }
   
@@ -90,8 +93,8 @@ public class SearchHelper {
   
   private boolean targetInFocusRadiusImpl() {
     float distFromCenter = getDistanceFromCenterOfScreen();
-    return 0.1f * mTargetFocusRadius > distFromCenter;
-  }
+    return 0.01f * mTargetFocusRadius > distFromCenter;
+}
   
   private Vector3 mTarget = new Vector3(0, 0, 0);
   private Vector3 mTransformedPosition = new Vector3(0, 0, 0);

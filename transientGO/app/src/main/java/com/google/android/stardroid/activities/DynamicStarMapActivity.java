@@ -33,10 +33,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ import com.google.android.stardroid.activities.dialogs.NoSensorsDialogFragment;
 import com.google.android.stardroid.activities.util.ActivityLightLevelChanger;
 import com.google.android.stardroid.activities.util.ActivityLightLevelChanger.NightModeable;
 import com.google.android.stardroid.activities.util.ActivityLightLevelManager;
+import com.google.android.stardroid.activities.util.ButtonListener;
 import com.google.android.stardroid.activities.util.FullscreenControlsManager;
 import com.google.android.stardroid.activities.util.GooglePlayServicesChecker;
 import com.google.android.stardroid.base.Lists;
@@ -55,12 +57,14 @@ import com.google.android.stardroid.control.AstronomerModel;
 import com.google.android.stardroid.control.AstronomerModel.Pointing;
 import com.google.android.stardroid.control.ControllerGroup;
 import com.google.android.stardroid.control.MagneticDeclinationCalculatorSwitcher;
+import com.google.android.stardroid.data.UserData;
 import com.google.android.stardroid.inject.HasComponent;
 import com.google.android.stardroid.layers.LayerManager;
 import com.google.android.stardroid.renderer.RendererController;
 import com.google.android.stardroid.renderer.SkyRenderer;
-import com.google.android.stardroid.renderer.TransientData;
+import com.google.android.stardroid.data.TransientData;
 import com.google.android.stardroid.renderer.util.AbstractUpdateClosure;
+import com.google.android.stardroid.renderer.util.SearchHelper;
 import com.google.android.stardroid.touch.DragRotateZoomGestureDetector;
 import com.google.android.stardroid.touch.GestureInterpreter;
 import com.google.android.stardroid.touch.MapMover;
@@ -134,7 +138,6 @@ public class DynamicStarMapActivity extends InjectableActivity
   private static final float ROTATION_SPEED = 10;
   private static final String TAG = MiscUtil.getTag(DynamicStarMapActivity.class);
 
-  private ImageButton cancelSearchButton;
   @Inject ControllerGroup controller;
   private GestureDetector gestureDetector;
   @Inject AstronomerModel model;
@@ -161,6 +164,8 @@ public class DynamicStarMapActivity extends InjectableActivity
   @Inject SensorAccuracyMonitor sensorAccuracyMonitor;
   // A list of runnables to post on the handler when we resume.
   private List<Runnable> onResumeRunnables = new ArrayList<>();
+  private Button cTran;
+  private boolean finish;
 
   // We need to maintain references to these objects to keep them from
   // getting gc'd.
@@ -171,6 +176,7 @@ public class DynamicStarMapActivity extends InjectableActivity
   @Inject Animation flashAnimation;
   private ActivityLightLevelManager activityLightLevelManager;
   private long sessionStartTime;
+  private ButtonListener bL;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -210,7 +216,8 @@ public class DynamicStarMapActivity extends InjectableActivity
               @Override
               public void setNightMode(boolean nightMode1) {
                 DynamicStarMapActivity.this.rendererController.queueNightVisionMode(nightMode1);
-              }});
+              }
+            });
     activityLightLevelManager = new ActivityLightLevelManager(activityLightLevelChanger,
             sharedPreferences);
 
@@ -219,13 +226,28 @@ public class DynamicStarMapActivity extends InjectableActivity
 
     Log.d(TAG, "-onCreate at " + System.currentTimeMillis());
 
-    activateSearchTarget(TransientData.getInstance().getCo());
+    finish = false;
+    cTran = (Button) findViewById(R.id.cTransient);
+    cTran.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        System.out.println("Button clicked!!!!!!!!!!!");
+        System.out.println(SearchHelper.INSTANCE.targetInFocusRadius());
+        if (SearchHelper.INSTANCE.targetInFocusRadius()) {
+          startActivity(new Intent(DynamicStarMapActivity.this, CaughtTransientActivity.class));
+          finish = true;
+          Toast.makeText(DynamicStarMapActivity.this, "Transient Caught!", Toast.LENGTH_SHORT).show();
+        } else {
+          Toast.makeText(DynamicStarMapActivity.this, "No transients found!", Toast.LENGTH_SHORT).show();
+        }
+      }
+    });
+    activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
 
-  }
+    ProgressBar p = (ProgressBar) findViewById(R.id.userExpBar);
+    p.setProgress(UserData.INSTANCE.getUserExp());
 
 
-  private void setText(int viewId, String text) {
-    ((TextView) findViewById(viewId)).setText(text);
   }
 
   private void checkForSensorsAndMaybeWarn() {
@@ -262,17 +284,12 @@ public class DynamicStarMapActivity extends InjectableActivity
         }
       }
     });
+
   }
 
   @Override
   protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
-    // Trigger the initial hide() shortly after the activity has been
-    // created, to briefly hint to the user that UI controls
-    // are available.
-    if (fullscreenControlsManager != null) {
-      fullscreenControlsManager.flashTheControls();
-    }
   }
 
   @Override
@@ -300,14 +317,6 @@ public class DynamicStarMapActivity extends InjectableActivity
         Log.d(TAG, "Key right");
         controller.rotate(10.0f);
         break;
-      case (KeyEvent.KEYCODE_BACK):
-        // If we're in search mode when the user presses 'back' the natural
-        // thing is to back out of search.
-        Log.d(TAG, "In search mode " + searchMode);
-        if (searchMode) {
-          //cancelSearch();
-          break;
-        }
       default:
         Log.d(TAG, "Key: " + event);
         return super.onKeyDown(keyCode, event);
@@ -318,7 +327,7 @@ public class DynamicStarMapActivity extends InjectableActivity
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
-    fullscreenControlsManager.delayHideTheControls();
+    //fullscreenControlsManager.delayHideTheControls();
     switch (item.getItemId()) {
 //      case R.id.menu_item_leaderboard:
 //        Log.d(TAG,"Leaderboard");
@@ -351,6 +360,10 @@ public class DynamicStarMapActivity extends InjectableActivity
       case R.id.menu_item_diagnostics:
         Log.d(TAG, "Loading Diagnostics");
         startActivity(new Intent(this, DiagnosticActivity.class));
+        break;
+      case R.id.transientsmenu:
+        Log.d(TAG, "Loading Transient");
+        startActivity(new Intent(this, ListOfTransientsActivity.class));
         break;
       default:
         Log.e(TAG, "Unwired-up menu item");
@@ -398,6 +411,7 @@ public class DynamicStarMapActivity extends InjectableActivity
 
   @Override
   public void onResume() {
+
     Log.d(TAG, "onResume at " + System.currentTimeMillis());
     super.onResume();
     Log.i(TAG, "Resuming");
@@ -415,16 +429,8 @@ public class DynamicStarMapActivity extends InjectableActivity
       handler.post(runnable);
     }
     Log.d(TAG, "-onResume at " + System.currentTimeMillis());
-  }
 
-  private void flashTheScreen() {
-    final View view = findViewById(R.id.view_mask);
-    // We don't need to set it invisible again - the end of the
-    // animation will see to that.
-    // TODO(johntaylor): check if setting it to GONE will bring
-    // performance benefits.
-    view.setVisibility(View.VISIBLE);
-    view.startAnimation(flashAnimation);
+    activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
   }
 
   @Override
@@ -439,8 +445,15 @@ public class DynamicStarMapActivity extends InjectableActivity
     controller.stop();
     skyView.onPause();
     wakeLock.release();
+
     // Debug.stopMethodTracing();
     Log.d(TAG, "DynamicStarMap -onPause");
+
+    if(finish){finish();}
+
+    //activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
+
+
   }
 
   @Override
@@ -452,10 +465,8 @@ public class DynamicStarMapActivity extends InjectableActivity
         Log.d(TAG, "Automode is set to " + autoMode);
         if (!autoMode) {
           Log.d(TAG, "Switching to manual control");
-          Toast.makeText(DynamicStarMapActivity.this, R.string.set_manual, Toast.LENGTH_SHORT).show();
         } else {
           Log.d(TAG, "Switching to sensor control");
-          Toast.makeText(DynamicStarMapActivity.this, R.string.set_auto, Toast.LENGTH_SHORT).show();
         }
         setAutoMode(autoMode);
         break;
@@ -517,14 +528,6 @@ public class DynamicStarMapActivity extends InjectableActivity
   }
 
   private void wireUpScreenControls() {
-    cancelSearchButton = (ImageButton) findViewById(R.id.cancel_search_button);
-    // TODO(johntaylor): move to set this in the XML once we don't support 1.5
-    cancelSearchButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        //cancelSearch();
-      }
-    });
 
     ButtonLayerView providerButtons = (ButtonLayerView) findViewById(R.id.layer_buttons_control);
 
@@ -561,7 +564,7 @@ public class DynamicStarMapActivity extends InjectableActivity
     float x = icicle.getFloat(ApplicationConstants.BUNDLE_X_TARGET);
     float y = icicle.getFloat(ApplicationConstants.BUNDLE_Y_TARGET);
     float z = icicle.getFloat(ApplicationConstants.BUNDLE_Z_TARGET);
-    searchTarget = new GeocentricCoordinates(x, y, z);
+    searchTarget = TransientData.INSTANCE.getData().get(0).getCoords();
     if (searchMode) {
       rendererController.queueEnableSearchOverlay(searchTarget);
     }

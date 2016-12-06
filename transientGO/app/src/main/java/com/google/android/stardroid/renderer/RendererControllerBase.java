@@ -238,14 +238,9 @@ public abstract class RendererControllerBase {
   public void queueEnableSearchOverlay(final GeocentricCoordinates target) {
     final String msg = "Enabling search overlay";
     queueRunnable(msg, CommandType.Data, new Runnable() { public void run() {
-      mRenderer.enableSearchOverlay(TransientData.getInstance().getCo());
-    }});
-  }
 
-  public void queueDisableSearchOverlay() {
-    final String msg = "Disabling search overlay";
-    queueRunnable(msg, CommandType.Data, new Runnable() { public void run() {
-      mRenderer.disableSearchOverlay();
+        mRenderer.enableSearchOverlay(target);
+
     }});
   }
 

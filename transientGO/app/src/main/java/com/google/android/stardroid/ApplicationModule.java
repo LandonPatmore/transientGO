@@ -21,7 +21,6 @@ import com.google.android.stardroid.layers.GridLayer;
 import com.google.android.stardroid.layers.HorizonLayer;
 import com.google.android.stardroid.layers.LayerManager;
 import com.google.android.stardroid.layers.NewStarsLayer;
-import com.google.android.stardroid.layers.NewTransientLayer;
 import com.google.android.stardroid.layers.PlanetsLayer;
 import com.google.android.stardroid.layers.SkyGradientLayer;
 import com.google.android.stardroid.util.MiscUtil;
@@ -138,7 +137,6 @@ public class ApplicationModule {
     LayerManager layerManager = new LayerManager(preferences);
     layerManager.addLayer(new NewStarsLayer(assetManager, resources));
     layerManager.addLayer(new PlanetsLayer(model, resources, preferences));
-    layerManager.addLayer(new NewTransientLayer(model, resources));
     layerManager.addLayer(new GridLayer(resources, 24, 19));
     layerManager.addLayer(new HorizonLayer(model, resources));
     layerManager.addLayer(new EclipticLayer(resources));

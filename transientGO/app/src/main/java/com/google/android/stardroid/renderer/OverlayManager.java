@@ -42,7 +42,7 @@ public class OverlayManager extends RendererObjectManager {
   private boolean mMustUpdateTransformedOrientation = true;
 
   private boolean mSearching = false;
-  private SearchHelper mSearchHelper = new SearchHelper();
+  //private SearchHelper SearchHelper.INSTANCE = new SearchHelper();
   private ColoredQuad mDarkQuad = null;
   private SearchArrow mSearchArrow = new SearchArrow();
   private CrosshairOverlay mCrosshair = new CrosshairOverlay();
@@ -67,8 +67,8 @@ public class OverlayManager extends RendererObjectManager {
     // If the search target is within this radius of the center of the screen, the user is
     // considered to have "found" it.
     float searchTargetRadius = Math.min(screenWidth, screenHeight) - 20;
-    mSearchHelper.setTargetFocusRadius(searchTargetRadius);
-    mSearchHelper.resize(screenWidth , screenHeight);
+    SearchHelper.INSTANCE.setTargetFocusRadius(searchTargetRadius);
+    SearchHelper.INSTANCE.resize(screenWidth , screenHeight);
 
     mSearchArrow.resize(gl, screenWidth, screenHeight, searchTargetRadius);
     mCrosshair.resize(gl, screenWidth, screenHeight);
@@ -92,19 +92,19 @@ public class OverlayManager extends RendererObjectManager {
     setupMatrices(gl);
 
     if (mSearching) {
-      mSearchHelper.setTransform(getRenderState().getTransformToDeviceMatrix());
-      mSearchHelper.checkState();
+      SearchHelper.INSTANCE.setTransform(getRenderState().getTransformToDeviceMatrix());
+      SearchHelper.INSTANCE.checkState();
 
-      float transitionFactor = mSearchHelper.getTransitionFactor();
+      float transitionFactor = SearchHelper.INSTANCE.getTransitionFactor();
 
       // Darken the background.
       mDarkQuad.draw(gl);
 
       // Draw the crosshair.
-      mCrosshair.draw(gl, mSearchHelper, getRenderState().getNightVisionMode());
+      mCrosshair.draw(gl, SearchHelper.INSTANCE, getRenderState().getNightVisionMode());
 
       // Draw the search arrow.
-      mSearchArrow.draw(gl, mTransformedLookDir, mTransformedUpDir, mSearchHelper,
+      mSearchArrow.draw(gl, mTransformedLookDir, mTransformedUpDir, SearchHelper.INSTANCE,
                         getRenderState().getNightVisionMode());
     }
 
@@ -126,15 +126,11 @@ public class OverlayManager extends RendererObjectManager {
 
   public void enableSearchOverlay(GeocentricCoordinates target) {
     mSearching = true;
-    mSearchHelper.setTransform(getRenderState().getTransformToDeviceMatrix());
-    mSearchHelper.setTarget(target);
+    SearchHelper.INSTANCE.setTransform(getRenderState().getTransformToDeviceMatrix());
+    SearchHelper.INSTANCE.setTarget(target);
     Vector3 transformedPosition = Matrix4x4.multiplyMV(mGeoToViewerTransform, target);
     mSearchArrow.setTarget(transformedPosition);
     queueForReload(false);
-  }
-
-  public void disableSearchOverlay() {
-    mSearching = false;
   }
 
   private void setupMatrices(GL10 gl) {

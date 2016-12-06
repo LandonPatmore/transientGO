@@ -80,8 +80,8 @@ public class SplashScreenActivity extends InjectableActivity
       }
     });
 
-//    JSONParser j = new JSONParser();
-//    j.execute();
+    JSONParser j = new JSONParser();
+    j.execute();
 
   }
 

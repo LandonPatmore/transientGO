@@ -3,6 +3,9 @@ package com.google.android.stardroid.util;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.android.stardroid.data.Transient;
+import com.google.android.stardroid.data.TransientData;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,9 +23,9 @@ public class JSONParser {
     // URL to get contacts JSON
     private static String url = "http://pi.cs.oswego.edu/~lpatmore/getAllTransients.php";
 
-    ArrayList<Transients> transientList;
+    ArrayList<Transient> transientList;
 
-    private Transients t;
+    private Transient t;
 
     public JSONParser(){
         transientList = new ArrayList<>();
@@ -53,7 +56,7 @@ public class JSONParser {
                     // Getting JSON Array node
                     JSONArray transients = jsonObj.getJSONArray("result");
 
-                    // looping through All Transients
+                    // looping through All Transient
                     for (int i = 0; i < transients.length(); i++) {
                         JSONObject c = transients.getJSONObject(i);
 
@@ -64,13 +67,12 @@ public class JSONParser {
                         float right_asencsion = (float) c.getDouble("right_asencsion");
                         float declination = (float) c.getDouble("declination");
 
-                        t = new Transients(author, transientId, dateAlerted, datePublished, right_asencsion, declination);
+                        t = new Transient(author, transientId, dateAlerted, datePublished, "TRANSIENT", right_asencsion, declination, 20.1f, 10);
 
                         // adding trans to trans list
                         transientList.add(t);
                     }
-                    DataTransferrer.getInstance().setTransients(transientList);
-                    DataTransferrer.getInstance().printAll();
+                    TransientData.INSTANCE.setTransients(transientList);
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                 }
