@@ -14,8 +14,6 @@
 
 package com.google.android.stardroid.renderer;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.content.res.Resources;
 
 import com.google.android.stardroid.R;
@@ -25,6 +23,8 @@ import com.google.android.stardroid.renderer.util.TextureReference;
 import com.google.android.stardroid.renderer.util.TexturedQuad;
 import com.google.android.stardroid.units.Vector3;
 import com.google.android.stardroid.util.MathUtil;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class CrosshairOverlay {
 
@@ -63,7 +63,7 @@ public class CrosshairOverlay {
     if (nightVisionMode) {
       gl.glColor4f(intensity, 0, 0, 1.0f);
     } else {
-      gl.glColor4f(intensity, 0, 0, 1.0f);
+      gl.glColor4f(intensity, intensity, 0, 0.5f);
       //ACTUAL
 //      gl.glColor4f(intensity, intensity, 0, 0.2f);
     }
