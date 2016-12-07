@@ -58,4 +58,10 @@
         android:orderInCategory="1"
         android:showAsAction="never"
         android:title="Transients"/>
+
+    <item android:id="@+id/transientscaught"
+        android:orderInCategory="1"
+        android:showAsAction="never"
+        android:title="Caught"/>
+
 </menu>

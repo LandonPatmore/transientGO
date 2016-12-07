@@ -26,7 +26,6 @@ public class SensorAccuracyMonitor implements SensorEventListener {
   private Sensor compassSensor;
   private Context context;
   private SharedPreferences sharedPreferences;
-  private Toaster toaster;
 
   @Inject
   SensorAccuracyMonitor(
@@ -36,7 +35,6 @@ public class SensorAccuracyMonitor implements SensorEventListener {
     this.sensorManager = sensorManager;
     this.context = context;
     this.sharedPreferences = sharedPreferences;
-    this.toaster = toaster;
     compassSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
   }
 
@@ -97,7 +95,6 @@ public class SensorAccuracyMonitor implements SensorEventListener {
     boolean dontShowDialog = sharedPreferences.getBoolean(
         CompassCalibrationActivity.DONT_SHOW_CALIBRATION_DIALOG, false);
     if (dontShowDialog) {
-      toaster.toastLong("Inaccurate compass - please calibrate");
     } else {
       Intent intent = new Intent(context, CompassCalibrationActivity.class);
       intent.putExtra(CompassCalibrationActivity.HIDE_CHECKBOX, false);

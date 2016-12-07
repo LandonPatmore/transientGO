@@ -1,7 +1,6 @@
 package com.google.android.stardroid.activities.util;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
@@ -32,9 +31,9 @@ public class FullscreenControlsManager {
   private boolean mVisible;
 
   public FullscreenControlsManager(
-          Activity parentActivity, View contentView,
+          View contentView,
           List<View> viewsToHide, List<View> viewsToTriggerHide) {
-    mActivity = parentActivity;
+    //mActivity = parentActivity;
     mVisible = true;
     mViewsToHide = new ArrayList(viewsToHide);
     mContentView = contentView;
@@ -108,11 +107,6 @@ public class FullscreenControlsManager {
   private final Runnable mShowPart2Runnable = new Runnable() {
     @Override
     public void run() {
-      // Delayed display of UI elements
-      ActionBar actionBar = mActivity.getActionBar();
-      if (actionBar != null) {
-        actionBar.show();
-      }
       for (View view : mViewsToHide) {
         view.setVisibility(View.VISIBLE);
       }

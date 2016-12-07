@@ -12,98 +12,90 @@
     tools:context="com.google.android.stardroid.activities.CaughtTransientActivity"
     android:weightSum="1">
 
-    <TextView
-        android:text="Congratulations!"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:gravity="center"
-        android:id="@+id/textView"
-        android:layout_weight="0.03"
-        android:textSize="30sp" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:text="ID"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/transientID"
-        android:textSize="36sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
 
-    <ImageView
-        android:src="@drawable/common_google_signin_btn_icon_dark_disabled"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_weight="0.63" />
+            <TextView
+                android:text="Transient Caught!"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/textView5"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/RA"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <TextView
+                android:text="ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/transientId"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DEC"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <ImageView
+                android:src="@drawable/common_google_signin_btn_icon_dark_focused"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:id="@+id/picURL" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/MAG"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <ImageView
+                android:src="@drawable/common_google_signin_btn_icon_dark_pressed"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:id="@+id/lightURL" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePublished"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <TextView
+                android:text="RA: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/RA"
+                android:gravity="center"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.03"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:id="@+id/dateAlerted" />
+            <TextView
+                android:text="DEC: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/DEC"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/type"
-        android:gravity="center"
-        android:layout_weight="0.03"
-        android:textSize="24sp" />
+            <TextView
+                android:text="MAG: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MAG"
+                android:gravity="center"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/link"
-        android:gravity="center"
-        android:layout_weight="0.03"
-        android:textSize="24sp" />
+            <TextView
+                android:text="0000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateFound"
+                android:gravity="center"
+                android:textSize="18sp " />
 
-    <Button
-        android:text="Done"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/doneButton"
-        android:layout_weight="0.19" />
+            <TextView
+                android:text="Score: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/score"
+                android:textSize="24sp" />
 
+            <Button
+                android:text="Done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/doneButton"
+                android:layout_weight="0.69" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

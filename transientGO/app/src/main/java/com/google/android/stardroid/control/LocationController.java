@@ -276,7 +276,6 @@ public class LocationController extends AbstractController implements LocationLi
 
     String messageTemplate = context.getString(R.string.location_set_auto);
     String message = String.format(messageTemplate, provider, place);
-    Toast.makeText(context, message, Toast.LENGTH_LONG).show();
   }
 
   private String getSummaryOfPlace(LatLong location, Address address) {

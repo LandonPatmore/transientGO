@@ -60,20 +60,7 @@
         </RelativeLayout>
       </RelativeLayout>
 
-      <com.google.android.stardroid.views.PreferencesButton
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="#00000000"
-          android:id="@+id/manual_auto_toggle"
-          stardroid:pref_key="auto_mode"
-          stardroid:image_on="@drawable/manualmode"
-          stardroid:image_off="@drawable/automaticmode"
-          stardroid:default_value="true"
-          android:layout_centerVertical="true"
-          android:layout_alignParentRight="true"
-          android:layout_alignParentEnd="true" />
-
-      <View
+        <View
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#ff990099"

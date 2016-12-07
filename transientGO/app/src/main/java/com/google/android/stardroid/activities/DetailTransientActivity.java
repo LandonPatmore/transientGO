@@ -2,10 +2,12 @@ package com.google.android.stardroid.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.stardroid.R;
 import com.google.android.stardroid.data.TransientData;
+import com.koushikdutta.ion.Ion;
 
 public class DetailTransientActivity extends Activity {
 
@@ -14,30 +16,41 @@ public class DetailTransientActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_transient);
 
-        TextView r = (TextView) findViewById(R.id.RA);
-        float ra = TransientData.INSTANCE.getData().get(this.getIntent().getExtras().getInt("location")).getR();
+        int position = this.getIntent().getExtras().getInt("location");
+
+        TextView id = (TextView) findViewById(R.id.dtid);
+        id.setText(TransientData.INSTANCE.getData().get(position).gettId());
+
+        TextView r = (TextView) findViewById(R.id.dRA);
+        float ra = TransientData.INSTANCE.getData().get(position).getRa();
         String raString = Float.toString(ra);
         r.setText("RA: " + raString);
 
-        TextView d = (TextView) findViewById(R.id.DEC);
-        d.setText("DEC: ?????");
+        TextView d = (TextView) findViewById(R.id.dDEC);
+        float dec = TransientData.INSTANCE.getData().get(position).getDecl();
+        String decString = Float.toString(dec);
+        d.setText("DEC: " + decString);
 
-        TextView m = (TextView) findViewById(R.id.MAG);
-        float mag = TransientData.INSTANCE.getData().get(this.getIntent().getExtras().getInt("location")).getM();
+        TextView m = (TextView) findViewById(R.id.dMAG);
+        float mag = TransientData.INSTANCE.getData().get(position).getMag();
         String magString = Float.toString(mag);
         m.setText("MAG: " + magString);
 
-        TextView t = (TextView) findViewById(R.id.datePublished);
-        t.setText("Date Published: " + TransientData.INSTANCE.getData().get(this.getIntent().getExtras().getInt("location")).getDp());
+        TextView t = (TextView) findViewById(R.id.ddf);
+        t.setText("Date Discovered: " + TransientData.INSTANCE.getData().get(position).getdF());
 
-        TextView tc = (TextView) findViewById(R.id.dateAlerted);
-        tc.setText("Date Alerted: " + TransientData.INSTANCE.getData().get(this.getIntent().getExtras().getInt("location")).getDa());
+        TextView tc = (TextView) findViewById(R.id.ds);
+        tc.setText("Points: " + TransientData.INSTANCE.getData().get(position).getScore());
 
-        TextView p = (TextView) findViewById(R.id.type);
-        p.setText("Type: " + TransientData.INSTANCE.getData().get(this.getIntent().getExtras().getInt("location")).getT());
+        ImageView p = (ImageView) findViewById(R.id.dpu);
+        Ion.with(p)
+                .load(TransientData.INSTANCE.getData().get(position).getpURL());
 
-        TextView id = (TextView) findViewById(R.id.link);
-        id.setText("Link: " + TransientData.INSTANCE.getData().get(this.getIntent().getExtras().getInt("location")).getLink());
+        ImageView l = (ImageView) findViewById(R.id.dlc);
+        Ion.with(l)
+                .load(TransientData.INSTANCE.getData().get(position).getlURL());
+
+
 
     }
 }

@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static android.content.ContentValues.TAG;
 
@@ -52,23 +53,27 @@ public class JSONParser {
 
                     // Getting JSON Array node
                     JSONArray transients = jsonObj.getJSONArray("result");
+                    System.out.println("ARRAY LENGTH " + transients.length());
 
                     // looping through All Transient
                     for (int i = 0; i < transients.length(); i++) {
                         JSONObject c = transients.getJSONObject(i);
 
-                        String author = c.getString("author");
-                        String transientId = c.getString("transientId");
-                        String dateAlerted = c.getString("dateAlerted");
-                        String datePublished = c.getString("datePublished");
-                        float right_asencsion = (float) c.getDouble("right_asencsion");
-                        float declination = (float) c.getDouble("declination");
+                        String transientid = c.getString("transientid");
+                        float RA = (float)c.getDouble("RA");
+                        float declination = (float)c.getDouble("declination");
+                        float MAG = (float) c.getDouble("MAG");
+                        String pictureURL = c.getString("pictureURL");
+                        String lightCurveURL = c.getString("lightCurveURL");
+                        String dateFound = c.getString("dateFound");
+                        int score = c.getInt("score");
 
-                        t = new Transient(author, transientId, dateAlerted, datePublished, "TRANSIENT", right_asencsion, declination, 20.1f, 60);
+                        t = new Transient(transientid, RA, declination, MAG, pictureURL, lightCurveURL, dateFound, score);
 
                         // adding trans to trans list
                         transientList.add(t);
                     }
+                    Collections.shuffle(transientList);
                     TransientData.INSTANCE.setTransients(transientList);
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());

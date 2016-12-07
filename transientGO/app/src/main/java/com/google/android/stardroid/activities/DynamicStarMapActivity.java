@@ -27,7 +27,6 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +39,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.stardroid.ApplicationConstants;
 import com.google.android.stardroid.R;
@@ -50,7 +48,6 @@ import com.google.android.stardroid.activities.dialogs.NoSensorsDialogFragment;
 import com.google.android.stardroid.activities.util.ActivityLightLevelChanger;
 import com.google.android.stardroid.activities.util.ActivityLightLevelChanger.NightModeable;
 import com.google.android.stardroid.activities.util.ActivityLightLevelManager;
-import com.google.android.stardroid.activities.util.ButtonListener;
 import com.google.android.stardroid.activities.util.FullscreenControlsManager;
 import com.google.android.stardroid.activities.util.GooglePlayServicesChecker;
 import com.google.android.stardroid.base.Lists;
@@ -58,13 +55,12 @@ import com.google.android.stardroid.control.AstronomerModel;
 import com.google.android.stardroid.control.AstronomerModel.Pointing;
 import com.google.android.stardroid.control.ControllerGroup;
 import com.google.android.stardroid.control.MagneticDeclinationCalculatorSwitcher;
-import com.google.android.stardroid.data.Transient;
+import com.google.android.stardroid.data.TransientData;
 import com.google.android.stardroid.data.UserData;
 import com.google.android.stardroid.inject.HasComponent;
 import com.google.android.stardroid.layers.LayerManager;
 import com.google.android.stardroid.renderer.RendererController;
 import com.google.android.stardroid.renderer.SkyRenderer;
-import com.google.android.stardroid.data.TransientData;
 import com.google.android.stardroid.renderer.util.AbstractUpdateClosure;
 import com.google.android.stardroid.renderer.util.SearchHelper;
 import com.google.android.stardroid.touch.DragRotateZoomGestureDetector;
@@ -76,8 +72,6 @@ import com.google.android.stardroid.util.MathUtil;
 import com.google.android.stardroid.util.MiscUtil;
 import com.google.android.stardroid.util.SensorAccuracyMonitor;
 import com.google.android.stardroid.views.ButtonLayerView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,7 +164,6 @@ public class DynamicStarMapActivity extends InjectableActivity
   private List<Runnable> onResumeRunnables = new ArrayList<>();
   private Button cTran;
   private boolean finish;
-  private Toast toast;
 
   // We need to maintain references to these objects to keep them from
   // getting gc'd.
@@ -181,7 +174,6 @@ public class DynamicStarMapActivity extends InjectableActivity
   @Inject Animation flashAnimation;
   private ActivityLightLevelManager activityLightLevelManager;
   private long sessionStartTime;
-  private ButtonListener bL;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -241,22 +233,9 @@ public class DynamicStarMapActivity extends InjectableActivity
         if (SearchHelper.INSTANCE.targetInFocusRadius()) {
           startActivity(new Intent(DynamicStarMapActivity.this, CaughtTransientActivity.class));
           finish = true;
-          toast = Toast.makeText(getApplicationContext(),
-                  "Transient Caught!", Toast.LENGTH_SHORT);
-          toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 900);
-          toast.show();
-        } else {
-          toast = Toast.makeText(getApplicationContext(),
-                  "No Transients in the Area!", Toast.LENGTH_SHORT);
-          toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 900);
-          toast.show();
         }
       }
     });
-
-    if(TransientData.INSTANCE.getData().size() == 0) {
-      activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
-    }
 
     ProgressBar p = (ProgressBar) findViewById(R.id.userExpBar);
     p.setProgress(UserData.INSTANCE.getUserExp());
@@ -271,6 +250,8 @@ public class DynamicStarMapActivity extends InjectableActivity
     TextView sco = (TextView) findViewById(R.id.userScore);
     String uS = Integer.toString(UserData.INSTANCE.getUserScore());
     sco.setText(uS);
+
+    activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
 
   }
 
@@ -300,11 +281,6 @@ public class DynamicStarMapActivity extends InjectableActivity
           sharedPreferences.edit().putBoolean(ApplicationConstants.AUTO_MODE_PREF_KEY, false)
                   .apply();
           setAutoMode(false);
-        } else {
-          Log.d(TAG, "showing no sensor toast");
-          Toast.makeText(
-                  DynamicStarMapActivity.this, R.string.no_sensor_warning, Toast.LENGTH_LONG).show();
-          // Don't force manual mode second time through - leave it up to the user.
         }
       }
     });
@@ -353,10 +329,6 @@ public class DynamicStarMapActivity extends InjectableActivity
     super.onOptionsItemSelected(item);
     //fullscreenControlsManager.delayHideTheControls();
     switch (item.getItemId()) {
-//      case R.id.menu_item_leaderboard:
-//        Log.d(TAG,"Leaderboard");
-//        startActivity(new Intent(this, LeaderboardActivity.class));
-//        break;
       case R.id.menu_item_settings:
         Log.d(TAG, "Settings");
         startActivity(new Intent(this, EditSettingsActivity.class));
@@ -388,6 +360,10 @@ public class DynamicStarMapActivity extends InjectableActivity
       case R.id.transientsmenu:
         Log.d(TAG, "Loading Transient");
         startActivity(new Intent(this, ListOfTransientsActivity.class));
+        break;
+      case R.id.transientscaught:
+        Log.d(TAG, "Loading Caught");
+        startActivity(new Intent(this, CaughtTransientList.class));
         break;
       default:
         Log.e(TAG, "Unwired-up menu item");
@@ -475,8 +451,6 @@ public class DynamicStarMapActivity extends InjectableActivity
 
     if(finish){finish();}
 
-    //activateSearchTarget(TransientData.INSTANCE.getData().get(0).getCoords());
-
 
   }
 
@@ -561,20 +535,19 @@ public class DynamicStarMapActivity extends InjectableActivity
       ImageButton button = (ImageButton) providerButtons.getChildAt(i);
       buttonViews.add(button);
     }
-    buttonViews.add(findViewById(R.id.manual_auto_toggle));
-    ButtonLayerView manualButtonLayer = (ButtonLayerView) findViewById(
-            R.id.layer_manual_auto_toggle);
 
     fullscreenControlsManager = new FullscreenControlsManager(
-            this,
-            findViewById(R.id.main_sky_view),
-            Lists.<View>asList(manualButtonLayer, providerButtons),
+            this.findViewById(R.id.main_sky_view),
+            Lists.<View>asList(providerButtons),
             buttonViews);
 
     MapMover mapMover = new MapMover(model, controller, this);
 
     gestureDetector = new GestureDetector(this, new GestureInterpreter(
             fullscreenControlsManager, mapMover));
+
+
+
     dragZoomRotateDetector = new DragRotateZoomGestureDetector(mapMover);
   }
 

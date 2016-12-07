@@ -9,23 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.android.stardroid.R;
-import com.google.android.stardroid.data.TransientData;
 import com.google.android.stardroid.data.Transient;
+import com.google.android.stardroid.data.TransientData;
 
 import java.util.ArrayList;
 
-public class ListOfTransientsActivity extends Activity {
+public class CaughtTransientList extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_transients);
+        setContentView(R.layout.activity_caught_transient_list);
 
-        ListView list = (ListView) findViewById(R.id.listTransients);
+        ListView list = (ListView) findViewById(R.id.clistT);
 
         ArrayList<String> titles = new ArrayList<>();
-        for(Transient t : TransientData.INSTANCE.getData()){
-            titles.add(t.gettId());
+        for(Transient t : TransientData.INSTANCE.getCaught()){
+                titles.add(t.gettId());
         }
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
@@ -36,13 +36,14 @@ public class ListOfTransientsActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 int p = position;
 
-                Intent detailIntent = new Intent(ListOfTransientsActivity.this, DetailTransientActivity.class);
+                Intent detailIntent = new Intent(CaughtTransientList.this, DetailTransientActivity.class);
 
                 detailIntent.putExtra("location", p);
 
                 startActivity(detailIntent);
             }
         });
+
 
     }
 }

@@ -8,7 +8,7 @@ public enum UserData {
     INSTANCE;
 
     private int userExp;
-    private int userLevel;
+    private int userLevel = 1;
     private int userScore;
     private int totalUserScore;
     private String userName;

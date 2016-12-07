@@ -1,92 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_detail_transient"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/activity_caught_transient"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.google.android.stardroid.activities.DetailTransientActivity"
-    android:orientation="vertical">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.google.android.stardroid.activities.CaughtTransientActivity"
+    android:weightSum="1">
 
-    <TextView
-        android:text="ID"
-        android:gravity="center"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/transientID"
-        android:textSize="36sp" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:src="@drawable/common_google_signin_btn_icon_dark_disabled"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_weight="0.63" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/RA"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <TextView
+                android:text="Transient Caught!"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/textView5"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DEC"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <TextView
+                android:text="ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/dtid"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/MAG"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <ImageView
+                android:src="@drawable/common_google_signin_btn_icon_dark_focused"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:id="@+id/dpu" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePublished"
-        android:layout_weight="0.03"
-        android:gravity="center"
-        android:textSize="24sp" />
+            <ImageView
+                android:src="@drawable/common_google_signin_btn_icon_dark_pressed"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:id="@+id/dlc" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.03"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:id="@+id/dateAlerted" />
+            <TextView
+                android:text="RA: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dRA"
+                android:gravity="center"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/type"
-        android:gravity="center"
-        android:layout_weight="0.03"
-        android:textSize="24sp" />
+            <TextView
+                android:text="DEC: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/dDEC"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/link"
-        android:gravity="center"
-        android:layout_weight="0.03"
-        android:textSize="24sp" />
+            <TextView
+                android:text="MAG: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dMAG"
+                android:gravity="center"
+                android:textSize="24sp" />
 
+            <TextView
+                android:text="0000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ddf"
+                android:gravity="center"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Score: 0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/ds"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -29,7 +29,6 @@ import com.google.android.stardroid.StardroidApplication;
 import com.google.android.stardroid.activities.dialogs.EulaDialogFragment;
 import com.google.android.stardroid.activities.dialogs.WhatsNewDialogFragment;
 import com.google.android.stardroid.activities.util.ConstraintsChecker;
-import com.google.android.stardroid.data.PullUserData;
 import com.google.android.stardroid.inject.HasComponent;
 import com.google.android.stardroid.data.JSONParser;
 import com.google.android.stardroid.util.MiscUtil;
