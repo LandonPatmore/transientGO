@@ -11,8 +11,8 @@
 
 ### Development Tools
 * Android Studio
-* Atom Text Editor
-* Eclipse/Netbeans
+* Terminal
+* VIM
 
 ### Data Sources
 * [4 Pi Sky API](http://voeventdb.4pisky.org/apiv1/)
