@@ -21,6 +21,7 @@
 * Java (API 19)
 * SQL
 * Python
+* PHP
 
 # How to Contribute
 **First Time Usage**
@@ -60,11 +61,11 @@
 
 # Contributors:
 
+* **Landon Patmore** - *lpatmore@oswego.edu* **(Project Lead Developer)**
+
 * **Sushmita Banerjee** - *sbanerje@oswego.edu* **(Developer)**
 
 * **Zackary Keller** - *zkeller@oswego.edu* **(Developer)**
-
-* **Landon Patmore** - *lpatmore@oswego.edu* **(Project Lead Developer)**
 
 * **Jacob Brooks** - *jbrooks2@oswego.edu* **(Developer)**
 
