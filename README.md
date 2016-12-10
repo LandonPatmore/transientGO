@@ -11,8 +11,8 @@
 
 ### Development Tools
 * Android Studio
-* Terminal
-* VIM
+* Atom Text Editor
+* Eclipse/Netbeans
 
 ### Data Sources
 * [4 Pi Sky API](http://voeventdb.4pisky.org/apiv1/)
@@ -21,7 +21,6 @@
 * Java (API 19)
 * SQL
 * Python
-* PHP
 
 # How to Contribute
 **First Time Usage**
@@ -61,11 +60,11 @@
 
 # Contributors:
 
-* **Landon Patmore** - *lpatmore@oswego.edu* **(Project Lead Developer)**
-
 * **Sushmita Banerjee** - *sbanerje@oswego.edu* **(Developer)**
 
 * **Zackary Keller** - *zkeller@oswego.edu* **(Developer)**
+
+* **Landon Patmore** - *lpatmore@oswego.edu* **(Project Lead Developer)**
 
 * **Jacob Brooks** - *jbrooks2@oswego.edu* **(Developer)**
 
